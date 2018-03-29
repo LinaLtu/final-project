@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxPromise from 'redux-promise';
+import reducer from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-ReactDOM.render(
-    <HelloWorld />,
-    document.querySelector('main')
+export const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
-function HelloWorld() {
-    return (
-        <div>Hello, World!</div>
-    );
-}
+const elem = (
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
+
+ReactDOM.render(elem, document.querySelector('main'));
