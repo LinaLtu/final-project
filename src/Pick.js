@@ -9,10 +9,15 @@ export default class Pick extends React.Component {
     render() {
         return (
             <div className="pick">
-                <h1>
-                    Here you'll see two pictures allowing you to search for
-                    users by language and city
-                </h1>
+                <h1>Find Your Tandem Partner</h1>
+                <div className="find-tandem-pics">
+                    <div className="find-tandem-pics-item-city">
+                        <p>Pick A City</p>
+                    </div>
+                    <div className="find-tandem-pics-item-language">
+                        <p>Pick a Language</p>
+                    </div>
+                </div>
             </div>
         );
     }

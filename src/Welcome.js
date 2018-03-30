@@ -10,7 +10,10 @@ export default class Welcome extends React.Component {
         return (
             <div className="welcome">
                 <h1>
-                    This is a very smart quote and some nice background image
+                    <blockquote cite="Geoffrey Willans">
+                        You can never understand one language until you
+                        understand at least two. ‒Geoffrey Willans
+                    </blockquote>
                 </h1>
             </div>
         );

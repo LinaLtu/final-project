@@ -6,6 +6,8 @@ import Nav from './Nav';
 import Welcome from './Welcome';
 import Join from './Join';
 import Pick from './Pick';
+import Map from './Map';
+import Footer from './Footer';
 
 export default class App extends React.Component {
     constructor() {
@@ -20,9 +22,10 @@ export default class App extends React.Component {
                     <div className="app-content">
                         <Nav />
                         <Welcome />
-                        <Pick />
+                        <Map />
                         <Join />
                         <Pick />
+                        <Footer />
                     </div>
                 </div>
             </BrowserRouter>

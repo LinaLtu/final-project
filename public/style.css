@@ -6,7 +6,7 @@ body {
     color: #565b63;
     margin: 0;
     padding: 0;
-    font-family: Graphik, sans-serif;
+    font-family: 'Ovo', serif;
 }
 
 .app-content {
@@ -35,7 +35,7 @@ body {
     background: rgb(255, 255, 255);
     border-bottom: 1px solid rgb(192, 194, 186);
     width: 100%;
-    height: auto;
+    height: 10vh;
 }
 
 .nav li {
@@ -48,6 +48,8 @@ body {
 .nav ul {
     display: flex;
     justify-content: center;
+    padding-top: 10px;
+    margin-top: -10px;
 }
 
 .nav a {
@@ -66,23 +68,32 @@ body {
 .join,
 .pick {
     width: 100%;
-    height: 300px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
     /* background: pink; */
 }
 
 .welcome {
     height: 500px;
+    font-family: 'Pinyon Script', cursive;
     background-image: url('header-img.jpg');
     background-repeat: no-repeat;
+    color: rgb(255, 255, 255);
     /* background-attachment: fixed; */
     background-position: center;
     background-size: cover;
 }
 
+.welcome h1 {
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10%;
+    font-size: 40px;
+}
+
 .join {
-    height: 600px;
+    height: 500px;
     background-image: url('join-img.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -90,9 +101,116 @@ body {
     background-size: cover;
 }
 
-.join-buttons {
+.buttons-field {
     width: 100%;
-    margin-top: 5%;
+    margin-top: 10%;
     height: 300px;
-    background: rgb(211, 151, 91, 0.6);
+    margin-bottom: 5%;
+    /* background: rgb(211, 151, 91, 0.6); */
+}
+
+.buttons-field h1 {
+    color: rgb(119, 123, 106);
+}
+
+.buttons-field p {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.join-button {
+    padding: 15px 70px;
+    margin: 20px;
+    font-family: 'Ovo', serif;
+    cursor: pointer;
+    border-radius: 40px;
+    font-size: 30px;
+    background: rgb(211, 151, 91);
+    border: 1px solid rgb(32, 33, 35);
+    color: rgb(32, 33, 35);
+    transition: background-color 1s;
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+}
+
+.join-button:hover {
+    background: rgb(250, 198, 147);
+    -webkit-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    -moz-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+}
+
+.find-tandem-pics {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.find-tandem-pics-item-city,
+.find-tandem-pics-item-language {
+    width: 280px;
+    height: 280px;
+    border: 4px solid rgb(211, 151, 91);
+    margin: 2%;
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.find-tandem-pics-item-city p,
+p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 40%;
+}
+
+.find-tandem-pics-item-city {
+    background-image: url('city.jpg');
+}
+
+.find-tandem-pics-item-language {
+    background-image: url('language.jpg');
+}
+
+.find-tandem-pics-item-city:hover,
+.find-tandem-pics-item-language:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    transition: background-color 1s;
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.pick {
+    height: 70vh;
+    background: rgb(255, 255, 255);
+}
+
+.footer {
+    text-align: center;
+    height: 3vh;
+    margin: 0 auto;
+}
+
+.footer p {
+    font-size: 15px;
+    margin: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+    .nav {
+        height: 12vh;
+    }
+    .pick {
+        height: 700px;
+    }
 }
