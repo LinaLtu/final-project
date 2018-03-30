@@ -11,13 +11,13 @@ export default class Nav extends React.Component {
             <div className="nav">
                 <ul>
                     <li>
-                        <Link to="/">PICK A CITY</Link>
+                        <Link to="/search-by-city">PICK A CITY</Link>
                     </li>
                     <li>
-                        <Link to="/">PICK A LANGUAGE</Link>
+                        <Link to="/search-by-language">PICK A LANGUAGE</Link>
                     </li>
                     <li>
-                        <Link to="/">LOG IN</Link>
+                        <Link to="/login">LOG IN</Link>
                     </li>
                 </ul>
             </div>

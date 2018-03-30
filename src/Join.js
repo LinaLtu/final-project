@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, HashRouter } from 'react-router-dom';
+import RegistrationForm from './RegistrationForm';
+import Login from './Login';
 
 export default class Join extends React.Component {
     constructor() {
@@ -14,7 +16,22 @@ export default class Join extends React.Component {
                     <p>Join Our Community Now!</p>
                     <button className="join-button">Register</button>
                     <button className="join-button">Sign In</button>
+                    <RegistrationForm />
+                    <Login />
                 </div>
+
+                <HashRouter>
+                    <div>
+                        <div className="hidden.">
+                            <Route
+                                exact
+                                path="/registration"
+                                component={RegistrationForm}
+                            />
+                        </div>
+                        <Route path="/login" component={Login} />
+                    </div>
+                </HashRouter>
             </div>
         );
     }

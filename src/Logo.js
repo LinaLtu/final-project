@@ -6,6 +6,11 @@ export default class Logo extends React.Component {
     }
 
     render() {
-        return <h1 className="title">THIS IS YOUR TITLE HERE</h1>;
+        return (
+            <div className="title">
+                <h1>Rubicon</h1>
+                <h2>Cross the Language Barrier</h2>
+            </div>
+        );
     }
 }

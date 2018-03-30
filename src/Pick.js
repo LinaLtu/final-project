@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+import SearchCity from './SearchCity';
+import SearchLanguage from './SearchLanguage';
+import SearchResults from './SearchResults';
 
 export default class Pick extends React.Component {
     constructor() {
@@ -18,6 +21,9 @@ export default class Pick extends React.Component {
                         <p>Pick a Language</p>
                     </div>
                 </div>
+                <SearchCity />
+                <SearchLanguage />
+                <SearchResults />
             </div>
         );
     }

@@ -18,13 +18,24 @@ body {
 }
 
 .title {
+    height: auto;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-bottom: 1px solid rgb(192, 194, 186);
+}
+
+.title h1 {
     text-align: center;
     margin: 0 auto;
-    padding: 20px;
     font-size: 45px;
     color: rgb(119, 123, 106);
-    background: rgb(255, 255, 255);
-    border-bottom: 1px solid rgb(192, 194, 186);
+}
+.title h2 {
+    font-size: 30px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 5px;
+    font-family: 'Pinyon Script', cursive;
 }
 
 .nav {
@@ -93,7 +104,7 @@ body {
 }
 
 .join {
-    height: 500px;
+    height: auto;
     background-image: url('join-img.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -103,8 +114,8 @@ body {
 
 .buttons-field {
     width: 100%;
-    margin-top: 10%;
-    height: 300px;
+    margin-top: 5%;
+    height: auto;
     margin-bottom: 5%;
     /* background: rgb(211, 151, 91, 0.6); */
 }
@@ -121,13 +132,16 @@ body {
     margin: 0;
 }
 
-.join-button {
+.join-button,
+.form-button {
     padding: 15px 70px;
     margin: 20px;
     font-family: 'Ovo', serif;
     cursor: pointer;
     border-radius: 40px;
     font-size: 30px;
+    font-family: 'Pinyon Script', cursive;
+    font-weight: bold;
     background: rgb(211, 151, 91);
     border: 1px solid rgb(32, 33, 35);
     color: rgb(32, 33, 35);
@@ -138,11 +152,72 @@ body {
     box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
 }
 
-.join-button:hover {
+.join-button:hover,
+.form-button:hover {
     background: rgb(250, 198, 147);
     -webkit-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
     -moz-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
     box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+}
+
+.registration-form,
+.pick-city {
+    width: 40%;
+    /* border: 2px solid rgb(192, 194, 186); */
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    padding: 5%;
+    background: rgb(211, 151, 91, 0.8);
+    -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+}
+
+.registration-form h1,
+.pick-city h1 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: rgb(32, 33, 35);
+    font-family: 'Pinyon Script', cursive;
+}
+
+.form-button {
+    font-size: 20px;
+    margin-top: 5%;
+    background: rgb(192, 194, 186);
+}
+
+.form-button:hover {
+    background: rgb(236, 237, 232);
+}
+
+.hidden {
+    display: none;
+}
+
+.add-lang:hover {
+    cursor: pointer;
+}
+
+.add-lang {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.form-element {
+    width: 90%;
+    padding: 2%;
+    margin: 1%;
+}
+
+.upload-span {
+    font-size: 20px;
+    color: rgb(32, 33, 35);
+    margin-left: -20%;
 }
 
 .find-tandem-pics {
@@ -157,9 +232,9 @@ body {
 .find-tandem-pics-item-language {
     width: 280px;
     height: 280px;
-    border: 4px solid rgb(211, 151, 91);
+    border: 4px solid rgb(236, 237, 232);
     margin: 2%;
-    color: rgb(255, 255, 255);
+    color: rgb(236, 237, 232);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -188,17 +263,25 @@ p {
     filter: alpha(opacity=70);
     transition: background-color 1s;
     transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    color: rgb(29, 33, 39);
 }
 
 .pick {
-    height: 70vh;
-    background: rgb(255, 255, 255);
+    height: auto;
+    background: rgb(206, 206, 206);
+}
+
+.pick-city {
+    padding: 3%;
+    background: rgb(211, 151, 91);
 }
 
 .footer {
     text-align: center;
-    height: 3vh;
+    height: auto;
+    width: 100%;
     margin: 0 auto;
+    background: rgb(255, 255, 255);
 }
 
 .footer p {
@@ -206,11 +289,47 @@ p {
     margin: 10px;
 }
 
+.search-results {
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    background-image: url('city.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+.search-results h1 {
+    color: rgb(255, 255, 255);
+}
+
 @media only screen and (max-width: 700px) {
     .nav {
         height: 12vh;
     }
     .pick {
-        height: 700px;
+        height: auto;
+    }
+
+    .registration-form,
+    .pick-city {
+        width: 70%;
+    }
+
+    .form-element {
+        margin: 3%;
+        width: 80%;
+    }
+
+    .smaller {
+        width: 86%;
+    }
+
+    .registration-form h1,
+    .pick-city h1 {
+        font-size: 25px;
     }
 }

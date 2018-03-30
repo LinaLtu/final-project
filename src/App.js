@@ -1,6 +1,6 @@
 import React from 'react';
 // import axios from 'axios';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, HashRouter } from 'react-router-dom';
 import Logo from './Logo';
 import Nav from './Nav';
 import Welcome from './Welcome';
