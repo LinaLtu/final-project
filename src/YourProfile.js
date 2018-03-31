@@ -95,7 +95,32 @@ export default class YourProfile extends React.Component {
                                 {this.state.showUploader && (<PicUpload />)}
                             </div>
                         </div>
-                        <div className="profile-info">Info here</div>
+                        <div className="profile-info"><table className="profile-table">
+                            <tr>
+                                <td className="table-label">Name:</td>
+                                <td>Levante</td>
+                            </tr>
+                            <tr>
+                                <td className="table-label">City:</td>
+                                <td>Catania</td>
+                            </tr>
+                            <tr>
+                                <td className="table-label">Age:</td>
+                                <td>31</td>
+                            </tr>
+                            <tr>
+                                <td className="table-label">I'm offering:</td>
+                                <td>Italian</td>
+                            </tr>
+                            <tr>
+                                <td className="table-label">I'm looking for:</td>
+                                <td>Spanish</td>
+                            </tr>
+                            <tr>
+                                <td className="table-label">Fun fact about me:</td>
+                                <td>I've never been to Palermo </td>
+                            </tr>
+                        </table></div>
                     </div>
                 </div>
             </div>

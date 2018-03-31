@@ -327,7 +327,7 @@ p {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 5%;
-    background: rgb(255, 224, 195);
+    background: rgb(211, 151, 91);
     -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
     -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
     box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
@@ -360,9 +360,16 @@ p {
     height: 250px;
     margin: 1%;
     margin-left: 3%;
-    border: 1px solid black;
+    margin-right: 0;
+    /* border: 1px solid black; */
     padding: 10px;
     background: rgb(255, 255, 255);
+    border-radius: 10px;
+    -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    z-index: 2
+
 }
 
 .profile-pic:hover {
@@ -381,7 +388,34 @@ p {
 }
 
 .profile-info {
-    
+    width: 65%;
+    height: auto;
+    /* border: 1px solid black; */
+    margin: 1%;
+    margin-left: 0;
+    margin-top: 3%;
+    background: white;
+    -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+}
+
+.profile-table {
+    padding: 2%;
+    font-size: 20px;
+}
+.profile-table td, tr {
+padding: 5px;
+}
+
+.profile-table td {
+    text-align: left;
+}
+
+.table-label {
+    color: black;
+    font-weight: bold;
+
 }
 
 @media only screen and (max-width: 700px) {
@@ -421,5 +455,15 @@ p {
         height: 200px;
         text-align: center;
         margin: 0 auto;
+    }
+
+    .profile-info {
+        width: 50%;
+        height: 200px;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 20px;
+        border: 1px solid black;
+
     }
 }
