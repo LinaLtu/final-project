@@ -1,4 +1,5 @@
 import React from 'react';
+import UserComponent from './UserComponent';
 
 export default class StarredUsers extends React.Component {
     constructor() {
@@ -9,9 +10,11 @@ export default class StarredUsers extends React.Component {
         return (
             <div className="starred-users">
                 <h1>Starred Users</h1>
-                <h2>User1</h2>
-                <h2>User2</h2>
-                <h2>User3</h2>
+                <div className="starred-flex">
+                    <UserComponent />
+                    <UserComponent />
+                    <UserComponent />
+                </div>
             </div>
         );
     }

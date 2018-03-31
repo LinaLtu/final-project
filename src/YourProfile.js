@@ -86,7 +86,10 @@ export default class YourProfile extends React.Component {
                             />
                         </span>
                         <span>
-                            <button className="join-button edit-button" onClick={this.toggleEditForm}>
+                            <button
+                                className="join-button edit-button"
+                                onClick={this.toggleEditForm}
+                            >
                                 Edit your Profile
                             </button>
                         </span>
@@ -99,39 +102,46 @@ export default class YourProfile extends React.Component {
                                 src="./placeholder-img.jpg"
                             />
                             <div className="change-picture">
-                                {this.state.showUploader && (<PicUpload />)}
+                                {this.state.showUploader && <PicUpload />}
                             </div>
                         </div>
-                        <div className="profile-info"><table className="profile-table">
-                            <tr>
-                                <td className="table-label">Name:</td>
-                                <td>Levante</td>
-                            </tr>
-                            <tr>
-                                <td className="table-label">City:</td>
-                                <td>Catania</td>
-                            </tr>
-                            <tr>
-                                <td className="table-label">Age:</td>
-                                <td>31</td>
-                            </tr>
-                            <tr>
-                                <td className="table-label">I'm offering:</td>
-                                <td>Italian</td>
-                            </tr>
-                            <tr>
-                                <td className="table-label">I'm looking for:</td>
-                                <td>Spanish</td>
-                            </tr>
-                            <tr>
-                                <td className="table-label">Fun fact about me:</td>
-                                <td>I've never been to Palermo </td>
-                            </tr>
-                        </table></div>
+                        <div className="profile-info">
+                            <table className="profile-table">
+                                <tr>
+                                    <td className="table-label">Name:</td>
+                                    <td>Levante</td>
+                                </tr>
+                                <tr>
+                                    <td className="table-label">City:</td>
+                                    <td>Catania</td>
+                                </tr>
+                                <tr>
+                                    <td className="table-label">Age:</td>
+                                    <td>31</td>
+                                </tr>
+                                <tr>
+                                    <td className="table-label">
+                                        I'm offering:
+                                    </td>
+                                    <td>Italian</td>
+                                </tr>
+                                <tr>
+                                    <td className="table-label">
+                                        I'm looking for:
+                                    </td>
+                                    <td>Spanish</td>
+                                </tr>
+                                <tr>
+                                    <td className="table-label">
+                                        Fun fact about me:
+                                    </td>
+                                    <td>I've never been to Palermo </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    {this.state.editProfile && (<EditProfile />)}
-                    <div class="edit-profile">
-                    </div>
+                    {this.state.editProfile && <EditProfile />}
+                    <div className="edit-profile" />
                 </div>
             </div>
         );
