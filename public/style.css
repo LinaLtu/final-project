@@ -306,6 +306,84 @@ p {
     color: rgb(255, 255, 255);
 }
 
+/* LOGGED-IN PAGE */
+
+.your-profile-main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.your-profile-content {
+    width: 70%;
+    height: auto;
+    text-align: center;
+    border: 0 auto;
+    padding-bottom: 3%;
+    /* border: 1px solid white; */
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    background: rgb(255, 224, 195);
+    -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+}
+.profile-item-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: right;
+}
+
+.profile-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.star-img img {
+    width: 50px;
+    padding: 10px;
+}
+
+.edit-button {
+    font-size: 16px;
+    padding: 10px 50px;
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    margin: 1%;
+    margin-left: 3%;
+    border: 1px solid black;
+    padding: 10px;
+    background: rgb(255, 255, 255);
+}
+
+.profile-pic:hover {
+    cursor: pointer;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-picture {
+    padding: 30px;
+    /* border: 1px solid black; */
+}
+
+.profile-info {
+    
+}
+
 @media only screen and (max-width: 700px) {
     .nav {
         height: 12vh;
@@ -331,5 +409,17 @@ p {
     .registration-form h1,
     .pick-city h1 {
         font-size: 25px;
+    }
+
+    .edit-button {
+        font-size: 14px;
+        padding: 5px 20px;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        margin: 0 auto;
     }
 }

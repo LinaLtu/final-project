@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+import Logo from './Logo';
+import ProfileNav from './ProfileNav';
+import YourProfile from './YourProfile';
 
 export default class Profile extends React.Component {
     constructor() {
@@ -8,8 +11,10 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div className="pick">
-                <h1>This is your profile</h1>
+            <div className="profile-contetn">
+                <Logo />
+                <ProfileNav />
+                <YourProfile />
             </div>
         );
     }

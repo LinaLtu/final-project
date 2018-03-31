@@ -124,7 +124,7 @@ export default class RegistrationForm extends React.Component {
                         <span className="upload-span">
                             Upload your Picture:{' '}
                         </span>
-                        <input type="file" onChange={this.submitUploadImage} />
+                        <PicUpload />
                         <br />
                         <button
                             onClick={this.handleSubmit}

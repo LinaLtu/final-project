@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
-export default class Nav extends React.Component {
+export default class ProfileNav extends React.Component {
     constructor() {
         super();
     }
@@ -10,9 +10,11 @@ export default class Nav extends React.Component {
         return (
             <div className="nav">
                 <ul>
-                    <li>PICK A CITY</li>
-                    <li>PICK A LANGUAGE</li>
-                    <li>LOG IN</li>
+                    <li>MESSAGES</li>
+                    <li>STARRED USERS</li>
+                    <li>YOUR LE PARTNER?</li>
+                    <li>SEARCH</li>
+                    <li>FORUM</li>
                 </ul>
             </div>
         );
