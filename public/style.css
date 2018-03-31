@@ -161,7 +161,7 @@ body {
 }
 
 .registration-form,
-.pick-city {
+.pick-city, .edit-profile-form {
     width: 40%;
     /* border: 2px solid rgb(192, 194, 186); */
     border-radius: 10px;
@@ -176,7 +176,8 @@ body {
 }
 
 .registration-form h1,
-.pick-city h1 {
+.pick-city h1,
+.edit-profile-form h1{
     padding: 0;
     margin: 0;
     margin-bottom: 20px;
@@ -217,7 +218,6 @@ body {
 .upload-span {
     font-size: 20px;
     color: rgb(32, 33, 35);
-    margin-left: -20%;
 }
 
 .find-tandem-pics {
@@ -314,6 +314,15 @@ p {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+        background-image: url('header-img.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+}
+
+.your-profile-main h1 {
+    color: rgb(229, 229, 229);
 }
 
 .your-profile-content {
@@ -327,7 +336,7 @@ p {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 5%;
-    background: rgb(211, 151, 91);
+    background: rgb(211, 151, 91, 0.8);
     -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
     -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
     box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
@@ -410,12 +419,49 @@ padding: 5px;
 
 .profile-table td {
     text-align: left;
+    width: 30%;
 }
 
 .table-label {
     color: black;
     font-weight: bold;
 
+}
+
+.edit-profile {
+    margin-top: 5%;
+}
+
+
+
+.edit-profile-form {
+    background: rgb(255, 255, 255);
+    margin-top: 3%;
+}
+
+.edit-profile-form h1 {
+    color: black;
+}
+
+.starred-users {
+    width: 100%;
+    /* border: 2px solid rgb(192, 194, 186); */
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    padding: 5%;
+    background: rgb(211, 151, 91);
+    -webkit-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    -moz-box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    box-shadow: 7px 10px 9px -6px rgba(71, 68, 71, 0.6);
+    background:rgb(255, 255, 255);
+}
+
+.starred-users h1 {
+    font-family: 'Pinyon Script', cursive;
+    margin: 0;
+    padding: 0;
 }
 
 @media only screen and (max-width: 700px) {
@@ -427,7 +473,7 @@ padding: 5px;
     }
 
     .registration-form,
-    .pick-city {
+    .pick-city, .edit-profile-form {
         width: 70%;
     }
 
@@ -441,7 +487,7 @@ padding: 5px;
     }
 
     .registration-form h1,
-    .pick-city h1 {
+    .pick-city h1, .edit-profile-form h1 {
         font-size: 25px;
     }
 
@@ -458,12 +504,26 @@ padding: 5px;
     }
 
     .profile-info {
-        width: 50%;
-        height: 200px;
+        width: 70%;
+        height: auto;
         text-align: center;
         margin: 0 auto;
         margin-top: 20px;
-        border: 1px solid black;
 
     }
+
+    .edit-profile-form {
+        margin-top: 5%;
+    }
+}
+
+@media only screen and (max-width: 1220px) and (min-width: 701px) {
+        .profile-info {
+            width: 90%;
+            height: auto;
+            margin-left: 10%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
 }

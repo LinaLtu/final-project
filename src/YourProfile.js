@@ -1,5 +1,6 @@
 import React from 'react';
 import PicUpload from './PicUpload';
+import EditProfile from './EditProfile';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 export default class YourProfile extends React.Component {
@@ -26,11 +27,13 @@ export default class YourProfile extends React.Component {
                 'Alo'
             ],
             starImg: './star-white.jpg',
-            showUploader: false
+            showUploader: false,
+            editProfile: false
         };
 
         this.toggleStar = this.toggleStar.bind(this);
         this.toggleUploader = this.toggleUploader.bind(this);
+        this.toggleEditForm = this.toggleEditForm.bind(this);
     }
 
     toggleStar() {
@@ -46,6 +49,10 @@ export default class YourProfile extends React.Component {
     }
     toggleUploader() {
         this.setState({ showUploader: !this.state.showUploader });
+    }
+
+    toggleEditForm() {
+        this.setState({ editProfile: !this.state.editProfile });
     }
 
     uploadPicture() {
@@ -79,7 +86,7 @@ export default class YourProfile extends React.Component {
                             />
                         </span>
                         <span>
-                            <button className="join-button edit-button">
+                            <button className="join-button edit-button" onClick={this.toggleEditForm}>
                                 Edit your Profile
                             </button>
                         </span>
@@ -121,6 +128,9 @@ export default class YourProfile extends React.Component {
                                 <td>I've never been to Palermo </td>
                             </tr>
                         </table></div>
+                    </div>
+                    {this.state.editProfile && (<EditProfile />)}
+                    <div class="edit-profile">
                     </div>
                 </div>
             </div>

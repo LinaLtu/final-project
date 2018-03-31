@@ -2,7 +2,7 @@ import React from 'react';
 import PicUpload from './PicUpload';
 import { HashRouter, Route } from 'react-router-dom';
 
-export default class RegistrationForm extends React.Component {
+export default class EditProfile extends React.Component {
     constructor() {
         super();
     }
@@ -20,8 +20,8 @@ export default class RegistrationForm extends React.Component {
         //send info to Redux
         return (
             <div className="form">
-                <form className="registration-form">
-                    <h1>A couple of things about you...</h1>
+                <form className="edit-profile-form">
+                    <h1>Edit your Profile</h1>
                     <div className="form-inputs">
                         <input
                             onChange={this.handleChange}
@@ -38,6 +38,22 @@ export default class RegistrationForm extends React.Component {
                             className="form-element"
                         />
                         <br />
+                            <input
+                                onChange={this.handleChange}
+                                name="city"
+                                type="text"
+                                placeholder="City"
+                                className="form-element"
+                            />
+                            <br />
+                            <input
+                                onChange={this.handleChange}
+                                name="age"
+                                type="text"
+                                placeholder="Age"
+                                className="form-element"
+                            />
+                            <br />
                         <div>
                             <input
                                 onChange={this.handleChange}
@@ -105,22 +121,7 @@ export default class RegistrationForm extends React.Component {
                                 className="form-element hidden"
                             />
                         </div>
-                        <input
-                            onChange={this.handleChange}
-                            name="city"
-                            type="text"
-                            placeholder="City"
-                            className="form-element"
-                        />
-                        <br />
-                        <input
-                            onChange={this.handleChange}
-                            name="age"
-                            type="text"
-                            placeholder="Age"
-                            className="form-element"
-                        />
-                        <br />
+                        <br/>
                             <input
                                 onChange={this.handleChange}
                                 name="fact"
@@ -137,7 +138,7 @@ export default class RegistrationForm extends React.Component {
                             onClick={this.handleSubmit}
                             className="form-button"
                         >
-                            Join Now!
+                            Send
                         </button>
                     </div>
                 </form>

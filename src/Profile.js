@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route } from 'react-router-dom';
 import Logo from './Logo';
 import ProfileNav from './ProfileNav';
 import YourProfile from './YourProfile';
+import StarredUsers from './StarredUsers';
 
 export default class Profile extends React.Component {
     constructor() {
@@ -11,10 +12,11 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div className="profile-contetn">
+            <div className="profile-content">
                 <Logo />
                 <ProfileNav />
                 <YourProfile />
+                <StarredUsers />
             </div>
         );
     }
