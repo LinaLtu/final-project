@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxPromise from 'redux-promise';
 import reducer from './reducers';
+import Profile from './Profile';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 export const store = createStore(
@@ -18,4 +19,9 @@ const elem = (
     </Provider>
 );
 
-ReactDOM.render(elem, document.querySelector('main'));
+if (location.pathname === '/profile') {
+    ReactDOM.render(<Profile />, document.querySelector('main'));
+} else {
+    ReactDOM.render(elem, document.querySelector('main'));
+}
+// ReactDOM.render(elem, document.querySelector('main'));

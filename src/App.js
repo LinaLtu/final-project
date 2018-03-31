@@ -8,6 +8,7 @@ import Join from './Join';
 import Pick from './Pick';
 import Map from './Map';
 import Footer from './Footer';
+import Profile from './Profile';
 
 export default class App extends React.Component {
     constructor() {
@@ -27,6 +28,7 @@ export default class App extends React.Component {
                         <Pick />
                         <Footer />
                     </div>
+                    <Route exact path="/profile" component={Profile} />
                 </div>
             </BrowserRouter>
         );
