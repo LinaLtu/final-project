@@ -3,11 +3,16 @@ import { BrowserRouter, Link, Route } from 'react-router-dom';
 import Logo from './Logo';
 import ProfileNav from './ProfileNav';
 import YourProfile from './YourProfile';
+import Profile from './Profile';
 import StarredUsers from './StarredUsers';
 
 export default class Profile extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showStarred: this.props.showStarred
+        };
     }
 
     render() {
@@ -16,7 +21,7 @@ export default class Profile extends React.Component {
                 <Logo />
                 <ProfileNav />
                 <YourProfile />
-                <StarredUsers />
+                {this.props.showStarred && (<StarredUsers />)};
             </div>
         );
     }

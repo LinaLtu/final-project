@@ -5,11 +5,18 @@ export default class ProfileNav extends React.Component {
     constructor() {
         super();
 
+        this.state = {
+            showStarred: false
+        };
+
         this.toggleStarred = this.toggleStarred.bind(this);
     }
 
     toggleStarred() {
-        console.log('Working');
+        this.setState({
+            showStarred: !this.state.showStarred
+        });
+        console.log('Working', this.state.showStarred);
     }
 
     render() {
