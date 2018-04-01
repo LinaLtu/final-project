@@ -9,6 +9,7 @@ import Pick from './Pick';
 import Map from './Map';
 import Footer from './Footer';
 import Profile from './Profile';
+import OtherUserProfile from './OtherProfile';
 
 export default class App extends React.Component {
     constructor() {
@@ -29,6 +30,7 @@ export default class App extends React.Component {
                         <Footer />
                     </div>
                     <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/user" component={OtherUserProfile} />
                 </div>
             </BrowserRouter>
         );

@@ -1,19 +1,57 @@
 import React from 'react';
 import PicUpload from './PicUpload';
 import { HashRouter, Route } from 'react-router-dom';
+import axios from 'axios';
 
 export default class RegistrationForm extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            firtsname: '',
+            password: '',
+            nativelang1: '',
+            nativelang2: '',
+            nativelang3: '',
+            targetlang1: '',
+            targetlang2: '',
+            targetlang3: '',
+            city: '',
+            age: null,
+            fact: '',
+            error: false
+        };
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     onItemClick(e) {
         e.currentTarget.style.backgroundColor = 'pink';
     }
 
-    // handleChange(e) {
-    //     console.log(e);
-    // }
+    onSubmit(e) {
+        e.preventDefault();
+        console.log('Info', this.state);
+        axios.post('/registration', {
+            firstname: this.state.firstname,
+            email: this.state.email,
+            password: this.state.password,
+            nativelang1: this.state.nativelang1,
+            nativelang2: this.state.nativelang2,
+            nativelang3: this.state.nativelang3,
+            targetlang1: this.state.targetlang1,
+            targetlang2: this.state.targetlang2,
+            targetlang3: this.state.targetlang3,
+            city: this.state.city,
+            age: this.state.age,
+            fact: this.state.fact
+        });
+    }
 
     render() {
         // const  { firstname, lastname, email, password } = this.state;
@@ -24,27 +62,34 @@ export default class RegistrationForm extends React.Component {
                     <h1>A couple of things about you...</h1>
                     <div className="form-inputs">
                         <input
-                            onChange={this.handleChange}
                             name="firstname"
                             type="text"
                             placeholder="First Name"
                             className="form-element"
+                            onChange={this.onChange}
                         />
                         <input
-                            onChange={this.handleChange}
+                            name="email"
+                            type="text"
+                            placeholder="Email Address"
+                            className="form-element"
+                            onChange={this.onChange}
+                        />
+                        <input
                             name="password"
                             type="password"
                             placeholder="Password"
                             className="form-element"
+                            onChange={this.onChange}
                         />
                         <br />
                         <div>
                             <input
-                                onChange={this.handleChange}
-                                name="nativlang1"
+                                name="nativelang1"
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element smaller"
+                                onChange={this.onChange}
                                 style={{ width: '86%' }}
                             />{' '}
                             <span
@@ -56,41 +101,41 @@ export default class RegistrationForm extends React.Component {
                         </div>
                         <div className="hidden">
                             <input
-                                onChange={this.handleChange}
-                                name="nativlang2"
+                                name="nativelang2"
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element"
+                                onChange={this.onChange}
                                 style={{ width: '86%' }}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
                         <div className="hidden">
                             <input
-                                onChange={this.handleChange}
-                                name="nativlang3"
+                                name="nativelang3"
                                 type="text"
                                 placeholder="Language you are offering"
+                                onChange={this.onChange}
                                 className="form-element"
                             />
                         </div>
                         <div>
                             <input
-                                onChange={this.handleChange}
                                 name="targetlang1"
                                 type="text"
                                 placeholder="Language you would like to practice"
                                 className="form-element smaller"
+                                onChange={this.onChange}
                                 style={{ width: '86%' }}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
                         <div className="hidden">
                             <input
-                                onChange={this.handleChange}
                                 name="targetlang2"
                                 type="text"
                                 placeholder="Language you would like to practice"
+                                onChange={this.onChange}
                                 className="form-element"
                                 style={{ width: '86%' }}
                             />{' '}
@@ -98,49 +143,49 @@ export default class RegistrationForm extends React.Component {
                         </div>
                         <div className="hidden">
                             <input
-                                onChange={this.handleChange}
                                 name="targetlang3"
                                 type="text"
                                 placeholder="Language you would like to practice"
+                                onChange={this.onChange}
                                 className="form-element hidden"
                             />
                         </div>
                         <input
-                            onChange={this.handleChange}
                             name="city"
                             type="text"
                             placeholder="City"
                             className="form-element"
+                            onChange={this.onChange}
                         />
                         <br />
                         <input
-                            onChange={this.handleChange}
                             name="age"
                             type="text"
                             placeholder="Age"
                             className="form-element"
+                            onChange={this.onChange}
                         />
                         <br />
-                            <input
-                                onChange={this.handleChange}
-                                name="fact"
-                                type="text"
-                                placeholder="Fun Fact about Me"
-                                className="form-element"
-                            />
+                        <input
+                            name="fact"
+                            type="text"
+                            placeholder="Fun Fact about Me"
+                            className="form-element"
+                            onChange={this.onChange}
+                        />
                         <span className="upload-span">
                             Upload your Picture:{' '}
                         </span>
                         <PicUpload />
                         <br />
-                        <button
-                            onClick={this.handleSubmit}
-                            className="form-button"
-                        >
+                        <button onClick={this.onSubmit} className="form-button">
                             Join Now!
                         </button>
                     </div>
                 </form>
+                {this.state.error && (
+                    <div className="error">Something went wrong. Ty again!</div>
+                )}
             </div>
         );
     }

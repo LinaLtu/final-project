@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import Logo from './Logo';
-import ProfileNav from './ProfileNav';
-import YourProfile from './YourProfile';
+import NavOnOtherUserProfile from './NavOnOtherUserProfile';
+import OtherProfile from './OtherProfile';
 import StarredUsers from './StarredUsers';
 import SelectedUsers from './SelectedUsers';
 
@@ -13,12 +13,10 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div className="profile-content">
+            <div className="other-profile-content">
                 <Logo />
-                <ProfileNav />
-                <YourProfile />
-                <StarredUsers />
-                <SelectedUsers />
+                <NavOnOtherUserProfile />
+                <OtherProfile />
             </div>
         );
     }

@@ -64,8 +64,101 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
+app.post('/registration', (req, res) => {
+    if (
+        req.body.firstname &&
+        req.body.email &&
+        req.body.password &&
+        req.body.nativelang1 &&
+        req.body.targetlang1
+    ) {
+        db.hashPassword(req.body.password).then(hash => {
+            db
+                .insertRegistration(
+                    req.body.firstname,
+                    req.body.email,
+                    hash,
+                    req.body.nativelang1,
+                    req.body.nativelang2,
+                    req.body.nativelang3,
+                    req.body.targetlang1,
+                    req.body.targetlang2,
+                    req.body.targetlang3,
+                    req.body.city,
+                    req.body.age,
+                    req.body.fact
+                )
+                .then(insertRegistration => {
+                    let id = insertRegistration.rows[0].id;
+                    req.session.userId = id;
+                    res.redirect('/profile');
+                    console.log('Session ID', id);
+                });
+        });
+    } else {
+        res.json({
+            success: false
+        });
+    }
+});
+
+app.post('/login', (req, res) => {
+    if (req.body.email && req.body.password) {
+        console.log('From login', req.body);
+        let hashedPass;
+        db
+            .getUserInfo(req.body.email)
+            .then(hashedPassword => {
+                if (!hashedPassword.rows[0]) {
+                    res.json({
+                        success: false
+                    });
+                    return;
+                }
+                console.log(hashedPassword.rows[0].password);
+                hashedPass = hashedPassword;
+                return true;
+            })
+            .then(() =>
+                db.checkPassword(req.body.password, hashedPass.rows[0].password)
+            )
+            .then(isMatch => {
+                if (isMatch === true) {
+                    console.log('Password is correct');
+                    let userId = hashedPass.rows[0].id;
+                    req.session.userId = userId;
+                    res.json({
+                        success: true
+                    });
+                } else {
+                    res.json({
+                        success: false
+                    });
+                }
+            })
+            .catch(err => {
+                console.log('There is an error in post /login', err);
+            });
+    } else {
+        res.json({
+            success: false,
+            error: 'Password or email not filled out'
+        });
+    }
+});
+
 app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
+});
+
+app.get('*', function(req, res) {
+    if (!req.session.userId && req.url !== '/') {
+        res.redirect('/');
+    } else if (req.session.userId && req.url === '/') {
+        res.redirect('/profile');
+    } else {
+        res.sendFile(__dirname + '/index.html');
+    }
 });
 
 app.listen(8080, function() {

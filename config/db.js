@@ -5,60 +5,86 @@ var { dbUser, dbPass } = require('../secrets.json');
 
 var db = spicedPg(
     process.env.DATABASE_URL ||
-        `postgres:${dbUser}:${dbPass}@localhost:5432/social-network`
+        `postgres:${dbUser}:${dbPass}@localhost:5432/rubicon`
 );
 
-// function hashPassword(plainTextPassword) {
-//     return new Promise(function(resolve, reject) {
-//         bcrypt.genSalt(function(err, salt) {
-//             if (err) {
-//                 return reject(err);
-//             }
-//             bcrypt.hash(plainTextPassword, salt, function(err, hash) {
-//                 if (err) {
-//                     return reject(err);
-//                 }
-//                 resolve(hash);
-//             });
-//         });
-//     });
-// }
-//
-// function checkPassword(textEnteredInLoginForm, hashedPasswordFromDatabase) {
-//     return new Promise(function(resolve, reject) {
-//         bcrypt.compare(
-//             textEnteredInLoginForm,
-//             hashedPasswordFromDatabase,
-//             function(err, doesMatch) {
-//                 if (err) {
-//                     reject(err);
-//                 } else {
-//                     resolve(doesMatch);
-//                 }
-//             }
-//         );
-//     });
-// }
-//
-// function insertRegistration(firstname, lastname, email, password) {
-//     const q = `INSERT INTO users (firstname, lastname, email, password) VALUES ($1, $2, $3, $4) RETURNING *`;
-//     const params = [firstname, lastname, email, password];
-//
-//     return db
-//         .query(q, params)
-//         .then(results => {
-//             console.log('Registration completed!');
-//             return results;
-//         })
-//         .catch(err => console.log(err));
-// }
-//
-// function getUserInfo(email) {
-//     const q = `SELECT * FROM users WHERE email = $1`;
-//     const param = [email];
-//     return db.query(q, param);
-// }
-//
+function hashPassword(plainTextPassword) {
+    return new Promise(function(resolve, reject) {
+        bcrypt.genSalt(function(err, salt) {
+            if (err) {
+                return reject(err);
+            }
+            bcrypt.hash(plainTextPassword, salt, function(err, hash) {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(hash);
+            });
+        });
+    });
+}
+
+function checkPassword(textEnteredInLoginForm, hashedPasswordFromDatabase) {
+    return new Promise(function(resolve, reject) {
+        bcrypt.compare(
+            textEnteredInLoginForm,
+            hashedPasswordFromDatabase,
+            function(err, doesMatch) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doesMatch);
+                }
+            }
+        );
+    });
+}
+
+function insertRegistration(
+    firstname,
+    email,
+    password,
+    nativelang1,
+    nativelang2,
+    nativelang3,
+    targetlang1,
+    targetlang2,
+    targetlang3,
+    city,
+    age,
+    fact
+) {
+    const q = `INSERT INTO users (firstname, email, password, nativelang1, nativelang2, nativelang3, targetlang1, targetlang2, targetlang3,
+    city, age, fact) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`;
+    const params = [
+        firstname,
+        email,
+        password,
+        nativelang1,
+        nativelang2,
+        nativelang3,
+        targetlang1,
+        targetlang2,
+        targetlang3,
+        city,
+        age,
+        fact
+    ];
+    return db
+        .query(q, params)
+        .then(results => {
+            console.log('Registration completed!');
+            return results;
+        })
+        .catch(err => console.log(err));
+}
+
+function getUserInfo(email) {
+    const q = `SELECT * FROM users WHERE email = $1`;
+    const param = [email];
+    return db.query(q, param);
+}
+
 // function getUserInfoById(id) {
 //     const q = `SELECT id, firstname, lastname, email, url, bio FROM users WHERE id = $1`;
 //     const param = [id];
@@ -229,11 +255,11 @@ var db = spicedPg(
 // //WHERE (recipient_id = $1 or sender_id = $1)
 // //AND (recipient_id = $2 or sender_id = $2)
 //
-// module.exports.hashPassword = hashPassword;
-// module.exports.insertRegistration = insertRegistration;
-// module.exports.getUserInfo = getUserInfo;
+module.exports.hashPassword = hashPassword;
+module.exports.insertRegistration = insertRegistration;
+module.exports.getUserInfo = getUserInfo;
 // module.exports.getUserInfoById = getUserInfoById;
-// module.exports.checkPassword = checkPassword;
+module.exports.checkPassword = checkPassword;
 // module.exports.insertImageIntoDB = insertImageIntoDB;
 // module.exports.insertBioIntoDB = insertBioIntoDB;
 // module.exports.sendFriendRequest = sendFriendRequest;
