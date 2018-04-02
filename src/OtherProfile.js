@@ -35,7 +35,7 @@ export default class OtherProfile extends React.Component {
         return (
             <div className="other-user-profile-main">
                 <h1>User name</h1>
-                <div className="your-profile-content">
+                <div className="other-user-profile-content">
                     <div className="profile-item-header">
                         <span className="star-img">
                             <img
@@ -54,7 +54,7 @@ export default class OtherProfile extends React.Component {
                     </div>
                     <div style={{ clear: 'both' }} />
                     <div className="profile-item-flex">
-                        <div className="profile-pic">
+                        <div className="other-user-profile-pic">
                             <img src="./placeholder-img.jpg" />
                         </div>
                         <div className="profile-info">
@@ -93,6 +93,7 @@ export default class OtherProfile extends React.Component {
                         </div>
                     </div>
                     {this.state.sendMessage && <SendMessage />}
+                    <SendMessage />
                     <div className="edit-profile" />
                 </div>
             </div>

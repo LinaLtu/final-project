@@ -6,10 +6,20 @@ export default class SendMessage extends React.Component {
         super();
     }
 
+    onKeyDown(e) {
+        console.log(e.target.value);
+    }
+
     render() {
         return (
-            <div className="inbox-main">
-                <h1>You can send a message here</h1>
+            <div className="message-area">
+                <h1 className="h1-message">Send a message to user</h1>
+                <textarea
+                    className="message-text-area"
+                    onKeyDown={this.onKeyDown}
+                />{' '}
+                <br />
+                <button className="message-send-button">Send</button>
             </div>
         );
     }
