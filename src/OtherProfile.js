@@ -45,7 +45,7 @@ export default class OtherProfile extends React.Component {
                         </span>
                         <span>
                             <button
-                                className="join-button edit-button"
+                                className="join-button edit-button send-message"
                                 onClick={this.toggleSendMessage}
                             >
                                 Send a Message
@@ -93,7 +93,6 @@ export default class OtherProfile extends React.Component {
                         </div>
                     </div>
                     {this.state.sendMessage && <SendMessage />}
-                    <SendMessage />
                     <div className="edit-profile" />
                 </div>
             </div>

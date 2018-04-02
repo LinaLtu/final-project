@@ -9,7 +9,7 @@ export default class Nav extends React.Component {
     render() {
         return (
             <div className="nav">
-                <ul>
+                <ul className="nav-ul">
                     <li>PICK A CITY</li>
                     <li>PICK A LANGUAGE</li>
                     <li>LOG IN</li>

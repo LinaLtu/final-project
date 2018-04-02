@@ -127,6 +127,7 @@ app.post('/login', (req, res) => {
                     console.log('Password is correct');
                     let userId = hashedPass.rows[0].id;
                     req.session.userId = userId;
+                    console.log('Req.session from login', userId);
                     res.json({
                         success: true
                     });
@@ -145,6 +146,14 @@ app.post('/login', (req, res) => {
             error: 'Password or email not filled out'
         });
     }
+});
+
+app.get('/logout', function(req, res) {
+    req.session = null;
+    console.log('Req.session from logout', req.session);
+    res.json({
+        success: true
+    });
 });
 
 app.get('*', function(req, res) {

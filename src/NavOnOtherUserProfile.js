@@ -10,7 +10,7 @@ export default class ProfileNav extends React.Component {
     render() {
         return (
             <div className="nav">
-                <ul>
+                <ul className="nav-ul">
                     <li>MESSAGES</li>
                     <li>YOUR PROFILE</li>
                     <li>SEARCH</li>

@@ -37,20 +37,24 @@ export default class RegistrationForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         console.log('Info', this.state);
-        axios.post('/registration', {
-            firstname: this.state.firstname,
-            email: this.state.email,
-            password: this.state.password,
-            nativelang1: this.state.nativelang1,
-            nativelang2: this.state.nativelang2,
-            nativelang3: this.state.nativelang3,
-            targetlang1: this.state.targetlang1,
-            targetlang2: this.state.targetlang2,
-            targetlang3: this.state.targetlang3,
-            city: this.state.city,
-            age: this.state.age,
-            fact: this.state.fact
-        });
+        axios
+            .post('/registration', {
+                firstname: this.state.firstname,
+                email: this.state.email,
+                password: this.state.password,
+                nativelang1: this.state.nativelang1,
+                nativelang2: this.state.nativelang2,
+                nativelang3: this.state.nativelang3,
+                targetlang1: this.state.targetlang1,
+                targetlang2: this.state.targetlang2,
+                targetlang3: this.state.targetlang3,
+                city: this.state.city,
+                age: this.state.age,
+                fact: this.state.fact
+            })
+            .then(() => {
+                location.replace('/profile');
+            });
     }
 
     render() {

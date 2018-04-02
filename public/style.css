@@ -133,7 +133,8 @@ body {
 }
 
 .join-button,
-.form-button {
+.form-button,
+.message-send-button {
     padding: 15px 70px;
     margin: 20px;
     font-family: 'Ovo', serif;
@@ -153,7 +154,8 @@ body {
 }
 
 .join-button:hover,
-.form-button:hover {
+.form-button:hover,
+.message-send-button:hover {
     background: rgb(250, 198, 147);
     -webkit-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
     -moz-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
@@ -558,7 +560,7 @@ tr {
 
 .message-area {
     width: 60%;
-    height: 400px;
+    height: 300px;
     /* border: 1px solid black; */
     text-align: center;
     margin: 0 auto;
@@ -585,6 +587,27 @@ tr {
 .message-send-button {
     float: right;
     margin-right: 10%;
+    padding: 10px 30px;
+    font-size: 16px;
+    background: rgb(87, 150, 225);
+    color: rbg(137, 142, 149);
+}
+
+.message-send-button:hover,
+.send-message:hover {
+    background: rgb(15, 99, 199);
+}
+
+.send-message:hover {
+    background: rgb(15, 99, 199);
+}
+.send-message {
+    background: rgb(87, 150, 225);
+    color: rbg(137, 142, 149);
+}
+
+.nav-ul li:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 700px) {
@@ -638,6 +661,13 @@ tr {
 
     .edit-profile-form {
         margin-top: 5%;
+    }
+
+    .message-send-button,
+    .send-message {
+        float: right;
+        margin-right: 10%;
+        padding: 8px 20px;
     }
 }
 
