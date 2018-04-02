@@ -64,6 +64,14 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
+// app.get('/', (req, res) => {
+//     if (!req.session.userId) {
+//         res.redirect('/');
+//     } else {
+//         res.redirect('/profile');
+//     }
+// });
+
 app.post('/registration', (req, res) => {
     if (
         req.body.firstname &&

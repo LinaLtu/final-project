@@ -610,6 +610,42 @@ tr {
     cursor: pointer;
 }
 
+/* INBOX */
+
+.inbox-window {
+    width: 70%;
+    height: 500px;
+    border: 1px solid black;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.inbox-messages li {
+    list-style-type: none;
+    display: inline-block;
+    /* float: left; */
+    padding: 20px 50px;
+    width: 30%;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.inbox-messages li:hover {
+    background: white;
+    cursor: pointer;
+}
+
+.inbox-element {
+    width: 80%;
+    height: 300px;
+    border: 1px solid balck;
+    text-align: center;
+    margin: 0 auto;
+    background: white;
+}
+
 @media only screen and (max-width: 700px) {
     .nav {
         height: 12vh;

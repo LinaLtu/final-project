@@ -5,6 +5,7 @@ import ProfileNav from './ProfileNav';
 import YourProfile from './YourProfile';
 import StarredUsers from './StarredUsers';
 import SelectedUsers from './SelectedUsers';
+import Inbox from './Inbox';
 
 export default class Profile extends React.Component {
     constructor() {
@@ -19,6 +20,7 @@ export default class Profile extends React.Component {
                 <YourProfile />
                 <StarredUsers />
                 <SelectedUsers />
+                <Inbox />
             </div>
         );
     }
