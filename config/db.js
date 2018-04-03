@@ -135,14 +135,59 @@ function getStarredUsers(loggedin_id) {
     const q = `SELECT * FROM starred WHERE loggedinuser = $1`;
     const param = [loggedin_id];
     return db.query(q, param).then(results => {
+        // results.rows contains an ARRAY of records
+        // We need the full user info for each for them
+        // Let's create an array of Promises
+
         var promises = [];
+
+        console.log(`found ${results.rows.length} starred users`);
+
         results.rows.forEach(row => {
             promises.push(getUserInfoById(row.starreduser));
         });
+
+        // Promise.all returns ALWAYS an ARRAY of responses
         return Promise.all(promises).then(results => {
-            console.log('STARRED user infos ', results[0].rows[0]);
+            console.log(`number of STARRED user infos: ${results.length}`);
             return results;
         });
+    });
+}
+
+function editProfile(
+    id,
+    {
+        firstname,
+        nativelang1,
+        nativelang2,
+        nativelang3,
+        targetlang1,
+        targetlang2,
+        targetlang3,
+        city,
+        age,
+        fact
+    }
+) {
+    const q = `UPDATE users SET firstname = $1, nativelang1 = $2, nativelang2 = $3, nativelang3 = $4, targetlang1 = $5, targetlang2 = $6, targetlang3 = $7,
+    city = $8, age = $9, fact = $10 WHERE id = $11`;
+    const param = [
+        firstname,
+        nativelang1,
+        nativelang2,
+        nativelang3,
+        targetlang1,
+        targetlang2,
+        targetlang3,
+        city,
+        age,
+        fact,
+        id
+    ];
+    return db.query(q, param).then(results => {
+        console.log('Profile edited ', results);
+        return results;
     });
 }
 
@@ -339,7 +384,7 @@ module.exports.getOtherUserInfo = getOtherUserInfo;
 module.exports.insertImageIntoDB = insertImageIntoDB;
 module.exports.addStarredUser = addStarredUser;
 module.exports.getStarredUsers = getStarredUsers;
-// module.exports.getFriendshipStatus = getFriendshipStatus;
+module.exports.editProfile = editProfile;
 // module.exports.acceptFriendRequest = acceptFriendRequest;
 // module.exports.deleteFriend = deleteFriend;
 // module.exports.cancelFriendRequest = cancelFriendRequest;

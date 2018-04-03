@@ -2,6 +2,7 @@ import React from 'react';
 import PicUpload from './PicUpload';
 import { HashRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { editProfileInfo } from './actions';
 
 function mapStateToProps(state) {
     return {
@@ -12,19 +13,49 @@ function mapStateToProps(state) {
 class EditProfile extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            firstname: '',
+            password: '',
+            nativelang1: '',
+            nativelang2: '',
+            nativelang3: '',
+            targetlang1: '',
+            targetlang2: '',
+            targetlang3: '',
+            city: '',
+            age: null,
+            fact: '',
+            error: false
+        };
+
+        this.onChange = this.onChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.setState(this.props.users[0]);
+    }
+
+    handleChange(e) {
+        console.log('inside handleChange', e);
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onChange(e) {
+        console.log('Inside onChange', e);
+    }
     onItemClick(e) {
         e.currentTarget.style.backgroundColor = 'pink';
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         e.preventDefault();
-        console.log("Edit form submitted");
+        console.log('Edit form submitted');
 
-        this.props.dispatch(editProfileInfo());
+        this.props.dispatch(editProfileInfo(this.state));
 
-        
         //
         // axios
         //     .post(`/edit-profile`)
@@ -36,11 +67,6 @@ class EditProfile extends React.Component {
         //     .then(() => {
         //         console.log('From state to props ', this.props.users);
         //     });
-
-    }
-
-    handleChange(e) {
-        console.log(e);
     }
 
     render() {
@@ -57,7 +83,7 @@ class EditProfile extends React.Component {
                             type="text"
                             placeholder="First Name"
                             className="form-element"
-                            value={this.props.users[0].firstname}
+                            value={this.state.firstname || ''}
                         />
                         <input
                             onChange={this.handleChange}
@@ -65,7 +91,6 @@ class EditProfile extends React.Component {
                             type="password"
                             placeholder="Password"
                             className="form-element"
-
                         />
                         <br />
                         <input
@@ -74,7 +99,7 @@ class EditProfile extends React.Component {
                             type="text"
                             placeholder="City"
                             className="form-element"
-                            value={this.props.users[0].city || ""}
+                            value={this.state.city || ''}
                         />
                         <br />
                         <input
@@ -83,7 +108,7 @@ class EditProfile extends React.Component {
                             type="text"
                             placeholder="Age"
                             className="form-element"
-                            value={this.props.users[0].age || ""}
+                            value={this.state.age || ''}
                         />
                         <br />
                         <div>
@@ -94,7 +119,7 @@ class EditProfile extends React.Component {
                                 placeholder="Language you are offering"
                                 className="form-element smaller"
                                 style={{ width: '86%' }}
-                                value={this.props.users[0].nativlang1 || ""}
+                                value={this.state.nativlang1 || ''}
                             />{' '}
                             <span
                                 className="add-lang"
@@ -111,7 +136,7 @@ class EditProfile extends React.Component {
                                 placeholder="Language you are offering"
                                 className="form-element"
                                 style={{ width: '86%' }}
-                                value={this.props.users[0].nativlang2 || ""}
+                                value={this.state.nativlang2 || ''}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
@@ -122,7 +147,7 @@ class EditProfile extends React.Component {
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element"
-                                value={this.props.users[0].nativlang3 || ""}
+                                value={this.state.nativlang3 || ''}
                             />
                         </div>
                         <div>
@@ -133,7 +158,7 @@ class EditProfile extends React.Component {
                                 placeholder="Language you would like to practice"
                                 className="form-element smaller"
                                 style={{ width: '86%' }}
-                                value={this.props.users[0].targetlang1 || ""}
+                                value={this.state.targetlang1 || ''}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
@@ -145,7 +170,7 @@ class EditProfile extends React.Component {
                                 placeholder="Language you would like to practice"
                                 className="form-element"
                                 style={{ width: '86%' }}
-                                value={this.props.users[0].targetlang2 || ""}
+                                value={this.state.targetlang2 || ''}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
@@ -156,7 +181,7 @@ class EditProfile extends React.Component {
                                 type="text"
                                 placeholder="Language you would like to practice"
                                 className="form-element hidden"
-                                value={this.props.users[0].targetlang3 || ""}
+                                value={this.state.targetlang3 || ''}
                             />
                         </div>
                         <br />
@@ -166,12 +191,8 @@ class EditProfile extends React.Component {
                             type="text"
                             placeholder="Fun Fact about Me"
                             className="form-element"
-                            value={this.props.users[0].fact || ""}
+                            value={this.state.fact || ''}
                         />
-                        <span className="upload-span">
-                            Upload your Picture:{' '}
-                        </span>
-                        <PicUpload />
                         <br />
                         <button
                             onClick={this.handleSubmit}

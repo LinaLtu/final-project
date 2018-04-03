@@ -42,6 +42,14 @@ export default function(state = {}, action) {
         // });
     }
 
+    if (action.type == 'GET_STARRED_USERS') {
+        console.log('GET_STARRED_USERS in reducers');
+
+        state = Object.assign({}, state, {
+            starredUsers: action.users
+        });
+    }
+
     return state;
 }
 //

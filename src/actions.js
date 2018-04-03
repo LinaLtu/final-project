@@ -33,8 +33,13 @@ export function insertUrlIntoDB(formData) {
     });
 }
 
-export function editProfileInfo(id) {
-    //
+export function editProfileInfo(data) {
+    return axios.put('/users-me', data).then(function({ message }) {
+        return {
+            type: 'INSERT_INTO_STARRED',
+            users: data.data
+        };
+    });
 }
 
 export function addStarredUser(id) {
@@ -42,6 +47,15 @@ export function addStarredUser(id) {
     return axios.post('/add-starred-user/' + id).then(function({ data }) {
         return {
             type: 'INSERT_INTO_STARRED',
+            users: data.data
+        };
+    });
+}
+
+export function getStarredUsers() {
+    return axios.get('/get-starred-users').then(function({ data }) {
+        return {
+            type: 'GET_STARRED_USERS',
             users: data.data
         };
     });

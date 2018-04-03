@@ -197,7 +197,10 @@ app.get('/get-other-user-info/:id', function(req, res) {
             .getOtherUserInfo(req.params.id)
             .then(results => {
                 console.log('From getOtherUserInfo ', results.rows);
-                results.rows[0].url = s3Url + results.rows[0].url;
+                if (results.rows[0].url != null) {
+                    results.rows[0].url = s3Url + results.rows[0].url;
+                }
+
                 res.json({ data: results.rows });
                 // res.json({ data: results.rows[0] });
             })
@@ -221,7 +224,7 @@ app.post('/upload', uploader.single('file'), s3.upload, function(req, res) {
                 });
             });
     } else {
-        console.log("Upload didin't work");
+        console.log("Upload didn't work");
         res.json({
             success: false
         });
@@ -234,13 +237,42 @@ app.post('/add-starred-user/:id', function(req, res) {
     });
 });
 
-app.get('/get-all-starred-users', function(req, res) {
+app.get('/get-starred-users', function(req, res) {
     db.getStarredUsers(req.session.userId).then(results => {
-        console.log('From /add-starred-user/:id, RESULTS', results[0].rows);
-        // res.json({
-        //     starred_ids: results.rows.starreduser
-        // });
+        console.log(
+            `index.js: number of STARRED user infos: ${results.length}`
+        );
+
+        // We have an array of RESPONSES, let's create an array of user profiles
+
+        let users = [];
+        results.forEach(response => {
+            users.push(response.rows[0]);
+        });
+
+        res.json({
+            data: users
+        });
     });
+});
+
+app.put('/users-me', function(req, res) {
+    console.log('req.body', req.body);
+
+    db
+        .editProfile(req.session.userId, req.body)
+        .then(results => {
+            res.json({
+                message: 'Profile successfully updated.'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                hasError: 1,
+                message: 'Internal error.'
+            });
+        });
 });
 
 // if (req.params.id == req.session.userId) {

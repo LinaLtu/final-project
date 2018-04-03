@@ -16,7 +16,7 @@ class OtherProfile extends React.Component {
         super();
 
         this.state = {
-            starImg: './star-white.jpg',
+            starImg: '/star-white.jpg',
             sendMessage: false
         };
 
@@ -39,13 +39,13 @@ class OtherProfile extends React.Component {
     }
 
     toggleStar() {
-        if (this.state.starImg == './star-white.jpg') {
+        if (this.state.starImg == '/star-white.jpg') {
             this.setState({
-                starImg: './star-yellow.jpg'
+                starImg: '/star-yellow.jpg'
             });
         } else {
             this.setState({
-                starImg: './star-white.jpg'
+                starImg: '/star-white.jpg'
             });
         }
         console.log('From starred ', this.props.match.params.id);
@@ -93,7 +93,13 @@ class OtherProfile extends React.Component {
                     <div style={{ clear: 'both' }} />
                     <div className="profile-item-flex">
                         <div className="other-user-profile-pic">
-                            <img src={this.props.users[0].url} />
+                            <img
+                                onClick={this.toggleUploader}
+                                src={
+                                    this.props.users[0].url ||
+                                    '/placeholder-img.jpg'
+                                }
+                            />
                         </div>
                         <div className="profile-info">
                             <table className="profile-table">
