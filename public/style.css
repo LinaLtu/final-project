@@ -618,6 +618,7 @@ tr {
     border: 1px solid black;
     text-align: center;
     margin: 0 auto;
+    position: relative;
 }
 
 .inbox-messages li {
@@ -632,18 +633,40 @@ tr {
     margin: 0 auto;
 }
 
+.inbox-element-container {
+    width: 90%;
+    height: auto;
+    border: 1px solid black;
+}
+
 .inbox-messages li:hover {
     background: white;
     cursor: pointer;
 }
 
 .inbox-element {
-    width: 80%;
+    width: 60%;
     height: 300px;
     border: 1px solid balck;
     text-align: center;
     margin: 0 auto;
     background: white;
+    padding: 0;
+    position: absolute;
+    top: 90px;
+    left: 20%;
+}
+
+.message {
+    width: 50%;
+    height: auto;
+    border: 1px solid black;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.shot-message-inbox:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 700px) {

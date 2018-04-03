@@ -1,8 +1,15 @@
 import React from 'react';
 import PicUpload from './PicUpload';
 import { HashRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class EditProfile extends React.Component {
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
+
+class EditProfile extends React.Component {
     constructor() {
         super();
     }
@@ -11,9 +18,30 @@ export default class EditProfile extends React.Component {
         e.currentTarget.style.backgroundColor = 'pink';
     }
 
-    // handleChange(e) {
-    //     console.log(e);
-    // }
+    handleSubmit(e){
+        e.preventDefault();
+        console.log("Edit form submitted");
+
+        this.props.dispatch(editProfileInfo());
+
+        
+        //
+        // axios
+        //     .post(`/edit-profile`)
+        //     .then(
+        //         this.props.dispatch(
+        //             getOtherUserInfo(this.props.match.params.id)
+        //         )
+        //     )
+        //     .then(() => {
+        //         console.log('From state to props ', this.props.users);
+        //     });
+
+    }
+
+    handleChange(e) {
+        console.log(e);
+    }
 
     render() {
         // const  { firstname, lastname, email, password } = this.state;
@@ -29,6 +57,7 @@ export default class EditProfile extends React.Component {
                             type="text"
                             placeholder="First Name"
                             className="form-element"
+                            value={this.props.users[0].firstname}
                         />
                         <input
                             onChange={this.handleChange}
@@ -36,24 +65,27 @@ export default class EditProfile extends React.Component {
                             type="password"
                             placeholder="Password"
                             className="form-element"
+
                         />
                         <br />
-                            <input
-                                onChange={this.handleChange}
-                                name="city"
-                                type="text"
-                                placeholder="City"
-                                className="form-element"
-                            />
-                            <br />
-                            <input
-                                onChange={this.handleChange}
-                                name="age"
-                                type="text"
-                                placeholder="Age"
-                                className="form-element"
-                            />
-                            <br />
+                        <input
+                            onChange={this.handleChange}
+                            name="city"
+                            type="text"
+                            placeholder="City"
+                            className="form-element"
+                            value={this.props.users[0].city || ""}
+                        />
+                        <br />
+                        <input
+                            onChange={this.handleChange}
+                            name="age"
+                            type="text"
+                            placeholder="Age"
+                            className="form-element"
+                            value={this.props.users[0].age || ""}
+                        />
+                        <br />
                         <div>
                             <input
                                 onChange={this.handleChange}
@@ -62,6 +94,7 @@ export default class EditProfile extends React.Component {
                                 placeholder="Language you are offering"
                                 className="form-element smaller"
                                 style={{ width: '86%' }}
+                                value={this.props.users[0].nativlang1 || ""}
                             />{' '}
                             <span
                                 className="add-lang"
@@ -78,6 +111,7 @@ export default class EditProfile extends React.Component {
                                 placeholder="Language you are offering"
                                 className="form-element"
                                 style={{ width: '86%' }}
+                                value={this.props.users[0].nativlang2 || ""}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
@@ -88,6 +122,7 @@ export default class EditProfile extends React.Component {
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element"
+                                value={this.props.users[0].nativlang3 || ""}
                             />
                         </div>
                         <div>
@@ -98,6 +133,7 @@ export default class EditProfile extends React.Component {
                                 placeholder="Language you would like to practice"
                                 className="form-element smaller"
                                 style={{ width: '86%' }}
+                                value={this.props.users[0].targetlang1 || ""}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
@@ -109,6 +145,7 @@ export default class EditProfile extends React.Component {
                                 placeholder="Language you would like to practice"
                                 className="form-element"
                                 style={{ width: '86%' }}
+                                value={this.props.users[0].targetlang2 || ""}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
@@ -119,16 +156,18 @@ export default class EditProfile extends React.Component {
                                 type="text"
                                 placeholder="Language you would like to practice"
                                 className="form-element hidden"
+                                value={this.props.users[0].targetlang3 || ""}
                             />
                         </div>
-                        <br/>
-                            <input
-                                onChange={this.handleChange}
-                                name="fact"
-                                type="text"
-                                placeholder="Fun Fact about Me"
-                                className="form-element"
-                            />
+                        <br />
+                        <input
+                            onChange={this.handleChange}
+                            name="fact"
+                            type="text"
+                            placeholder="Fun Fact about Me"
+                            className="form-element"
+                            value={this.props.users[0].fact || ""}
+                        />
                         <span className="upload-span">
                             Upload your Picture:{' '}
                         </span>
@@ -146,3 +185,5 @@ export default class EditProfile extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps)(EditProfile);

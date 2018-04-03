@@ -2,8 +2,22 @@ import React from 'react';
 import PicUpload from './PicUpload';
 import EditProfile from './EditProfile';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class YourProfile extends React.Component {
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
+
+//how do I change this?
+// changeImageUrl(url) {
+//        this.setState({
+//            url: url
+//        });
+//    }
+
+class YourProfile extends React.Component {
     constructor() {
         super();
 
@@ -74,9 +88,17 @@ export default class YourProfile extends React.Component {
     }
 
     render() {
+        if (!this.props.users) {
+            return null;
+        }
+
+        console.log('From app ', this.props);
+
         return (
             <div className="your-profile-main">
-                <h1>{this.state.greeting}, user!</h1>
+                <h1>
+                    {this.state.greeting}, {this.props.users[0].firstname}!
+                </h1>
                 <div className="your-profile-content">
                     <div className="profile-item-header">
                         <span className="star-img">
@@ -99,43 +121,56 @@ export default class YourProfile extends React.Component {
                         <div className="profile-pic">
                             <img
                                 onClick={this.toggleUploader}
-                                src="./placeholder-img.jpg"
+                                src={
+                                    this.props.users[0].url ||
+                                    '"./placeholder-img.jpg"'
+                                }
                             />
                             <div className="change-picture">
-                                {this.state.showUploader && <PicUpload />}
+                                {this.state.showUploader && (
+                                    <PicUpload
+                                        changeImageUrl={this.changeImageUrl}
+                                    />
+                                )}
                             </div>
                         </div>
                         <div className="profile-info">
                             <table className="profile-table">
                                 <tr>
                                     <td className="table-label">Name:</td>
-                                    <td>Levante</td>
+                                    <td>{this.props.users[0].firstname}</td>
                                 </tr>
                                 <tr>
                                     <td className="table-label">City:</td>
-                                    <td>Catania</td>
+                                    <td>{this.props.users[0].city || 'n/a'}</td>
                                 </tr>
                                 <tr>
                                     <td className="table-label">Age:</td>
-                                    <td>31</td>
+                                    <td>{this.props.users[0].age || 'n/a'}</td>
                                 </tr>
                                 <tr>
                                     <td className="table-label">
                                         I'm offering:
                                     </td>
-                                    <td>Italian</td>
+                                    <td>
+                                        {this.props.users[0].nativelang1 ||
+                                            'n/a'}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="table-label">
                                         I'm looking for:
                                     </td>
-                                    <td>Spanish</td>
+                                    <td>
+                                        {this.props.users[0].targetlang1 ||
+                                            'n/a'}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="table-label">
                                         Fun fact about me:
                                     </td>
-                                    <td>I've never been to Palermo </td>
+                                    <td>{this.props.users[0].fact || 'n/a'}</td>
                                 </tr>
                             </table>
                         </div>
@@ -147,3 +182,5 @@ export default class YourProfile extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps)(YourProfile);

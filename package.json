@@ -40,8 +40,6 @@
         "redux": "^3.7.1",
         "redux-devtools-extension": "^2.13.2",
         "redux-promise": "^0.5.3",
-        "socket-cookie-session": "github:spicedacademy/socket-cookie-session",
-        "socket.io": "^2.0.3",
         "spiced-pg": "spicedacademy/spiced-pg",
         "uid-safe": "^2.1.4",
         "webpack": "^1.14.0",

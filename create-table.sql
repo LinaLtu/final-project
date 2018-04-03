@@ -22,5 +22,6 @@ DROP TABLE IF EXISTS starred;
 
 CREATE TABLE starred (
     id SERIAL PRIMARY KEY,
-    starreduser VARCHAR(255) NOT NULL
+    starreduser INTEGER NOT NULL,
+    loggedinuser  INTEGER NOT NULL
 );

@@ -2,17 +2,23 @@ import React from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 export default class Nav extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
             <div className="nav">
                 <ul className="nav-ul">
-                    <li>PICK A CITY</li>
-                    <li>PICK A LANGUAGE</li>
-                    <li>LOG IN</li>
+                    <li onClick={this.props.pickCity}>
+                        <a href="#pickcity">PICK A CITY</a>
+                    </li>
+                    <li>
+                        <a href="#picklanguage">PICK A LANGUAGE</a>
+                    </li>
+                    <a href="#signin">
+                        <li>SIGN IN</li>
+                    </a>
                 </ul>
             </div>
         );

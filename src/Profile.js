@@ -15,7 +15,6 @@ export default class Profile extends React.Component {
     render() {
         return (
             <div className="profile-content">
-                <Logo />
                 <ProfileNav />
                 <YourProfile />
                 <StarredUsers />

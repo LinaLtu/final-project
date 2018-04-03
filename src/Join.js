@@ -17,7 +17,7 @@ export default class Join extends React.Component {
     }
 
     toggleRegistrationForm() {
-        if(this.state.showLogInForm === true){
+        if (this.state.showLogInForm === true) {
             this.setState({
                 showLogInForm: false
             });
@@ -28,7 +28,7 @@ export default class Join extends React.Component {
     }
 
     toggleLoginForm() {
-        if(this.state.showRegistrationForm === true){
+        if (this.state.showRegistrationForm === true) {
             this.setState({
                 showRegistrationForm: false
             });
@@ -44,10 +44,21 @@ export default class Join extends React.Component {
                 <div className="buttons-field">
                     <p>Cross the Language Barrier.</p>
                     <p>Join Our Community Now!</p>
-                    <button className="join-button"  onClick={this.toggleRegistrationForm}>Register</button>
-                    <button className="join-button" onClick={this.toggleLoginForm}>Sign In</button>
-                    {this.state.showRegistrationForm && (<RegistrationForm />)}
-                    {this.state.showLogInForm && (<Login />)}
+                    <button
+                        className="join-button"
+                        onClick={this.toggleRegistrationForm}
+                    >
+                        Register
+                    </button>
+                    <button
+                        id="signin"
+                        className="join-button"
+                        onClick={this.toggleLoginForm}
+                    >
+                        Sign In
+                    </button>
+                    {this.state.showRegistrationForm && <RegistrationForm />}
+                    {this.state.showLogInForm && <Login />}
                 </div>
 
                 <BrowserRouter>

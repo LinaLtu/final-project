@@ -85,6 +85,81 @@ function getUserInfo(email) {
     return db.query(q, param);
 }
 
+function getUserInfoById(id) {
+    const q = `SELECT id, firstname, email, nativelang1, nativelang2, nativelang3, targetlang1, targetlang2, targetlang3,
+    city, age, fact, url FROM users WHERE id = $1`;
+    const param = [id];
+    return db.query(q, param);
+}
+
+function getOtherUserInfo(other_user_id) {
+    const q = `SELECT id, firstname, email, nativelang1, nativelang2, nativelang3, targetlang1, targetlang2, targetlang3,
+    city, age, fact, url FROM users WHERE id = $1`;
+    const param = [other_user_id];
+    return db.query(q, param);
+}
+
+function insertImageIntoDB(url, id) {
+    const q = `UPDATE users SET url = $1 WHERE id = $2 RETURNING *`;
+    console.log('From the q: ', url, id);
+    const params = [url, id];
+
+    return db
+        .query(q, params)
+        .then(results => {
+            let images = results.rows;
+            images.forEach(function(image) {
+                console.log(image);
+                // let url = config.s3Url + image.image;
+                // image.image = url;
+            });
+            return images[0];
+        })
+        .catch(err => console.log(err));
+}
+
+function addStarredUser(starred_user_id, loggedin_id) {
+    console.log('From addStarredUser function');
+    const q = `INSERT INTO starred (starreduser,loggedinuser ) VALUES ($1, $2) RETURNING *`;
+    const params = [starred_user_id, loggedin_id];
+    return db
+        .query(q, params)
+        .then(results => {
+            console.log('Starred user inserted');
+            return results;
+        })
+        .catch(err => console.log(err));
+}
+
+function getStarredUsers(loggedin_id) {
+    const q = `SELECT * FROM starred WHERE loggedinuser = $1`;
+    const param = [loggedin_id];
+    return db.query(q, param).then(results => {
+        var promises = [];
+        results.rows.forEach(row => {
+            promises.push(getUserInfoById(row.starreduser));
+        });
+        return Promise.all(promises).then(results => {
+            console.log('STARRED user infos ', results[0].rows[0]);
+            return results;
+        });
+    });
+}
+
+// function getAll(recipient_id) {
+//     const q = `
+//     SELECT users.id, firstname, lastname, url, status
+//     FROM friendships
+// `;
+// const params = [recipient_id];
+//
+// return db
+//     .query(q, params)
+//     .then(results => {
+//         console.log('Results from acceptFriendRequest');
+//         return results;
+//     })
+
 // function getUserInfoById(id) {
 //     const q = `SELECT id, firstname, lastname, email, url, bio FROM users WHERE id = $1`;
 //     const param = [id];
@@ -258,11 +333,12 @@ function getUserInfo(email) {
 module.exports.hashPassword = hashPassword;
 module.exports.insertRegistration = insertRegistration;
 module.exports.getUserInfo = getUserInfo;
-// module.exports.getUserInfoById = getUserInfoById;
+module.exports.getUserInfoById = getUserInfoById;
 module.exports.checkPassword = checkPassword;
-// module.exports.insertImageIntoDB = insertImageIntoDB;
-// module.exports.insertBioIntoDB = insertBioIntoDB;
-// module.exports.sendFriendRequest = sendFriendRequest;
+module.exports.getOtherUserInfo = getOtherUserInfo;
+module.exports.insertImageIntoDB = insertImageIntoDB;
+module.exports.addStarredUser = addStarredUser;
+module.exports.getStarredUsers = getStarredUsers;
 // module.exports.getFriendshipStatus = getFriendshipStatus;
 // module.exports.acceptFriendRequest = acceptFriendRequest;
 // module.exports.deleteFriend = deleteFriend;

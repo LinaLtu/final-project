@@ -20,11 +20,6 @@ const elem = (
     </Provider>
 );
 
-if (location.pathname === '/profile') {
-    ReactDOM.render(<Profile />, document.querySelector('main'));
-} else if (location.pathname === '/user') {
-    ReactDOM.render(<OtherUserProfile />, document.querySelector('main'));
-} else {
+
     ReactDOM.render(elem, document.querySelector('main'));
-}
 // ReactDOM.render(elem, document.querySelector('main'));

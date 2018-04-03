@@ -33,6 +33,11 @@ var uploader = multer({
     }
 });
 
+app.use(function(req, res, next) {
+    console.log('From app.use ', req.url);
+    next();
+});
+
 app.use(bodyParser.json());
 
 const cookieSessionMiddleware = cookieSession({
@@ -164,9 +169,119 @@ app.get('/logout', function(req, res) {
     });
 });
 
-app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
+app.get('/get-user-info', function(req, res) {
+    db
+        .getUserInfoById(req.session.userId)
+        .then(results => {
+            if (results.rows[0].url != null) {
+                results.rows[0].url = s3Url + results.rows[0].url;
+            }
+            res.json({ data: results.rows });
+        })
+        .catch(err => {
+            console.log('Something went wrong', err);
+            res.sendStatus(500);
+        });
 });
+
+app.get('/get-other-user-info/:id', function(req, res) {
+    console.log('From the other OtherUser page', req.params.id);
+    if (req.params.id == req.session.userId) {
+        console.log('Same');
+        res.json({
+            data: 'same'
+        });
+    } else {
+        console.log('From getOtherUserInfo ', req.params.id);
+        db
+            .getOtherUserInfo(req.params.id)
+            .then(results => {
+                console.log('From getOtherUserInfo ', results.rows);
+                results.rows[0].url = s3Url + results.rows[0].url;
+                res.json({ data: results.rows });
+                // res.json({ data: results.rows[0] });
+            })
+            .catch(err => {
+                console.log('Something went wrong', err);
+                res.sendStatus(500);
+            });
+    }
+});
+
+app.post('/upload', uploader.single('file'), s3.upload, function(req, res) {
+    console.log('We are making it to app.post.upoad');
+    if (req.file) {
+        db
+            .insertImageIntoDB(req.file.filename, req.session.userId)
+            .then(results => {
+                console.log('Upload Successful', results);
+                res.json({
+                    data: s3Url + results.url,
+                    id: req.session.userId
+                });
+            });
+    } else {
+        console.log("Upload didin't work");
+        res.json({
+            success: false
+        });
+    }
+});
+
+app.post('/add-starred-user/:id', function(req, res) {
+    db.addStarredUser(req.params.id, req.session.userId).then(results => {
+        console.log('From /add-starred-user/:id ', results.rows);
+    });
+});
+
+app.get('/get-all-starred-users', function(req, res) {
+    db.getStarredUsers(req.session.userId).then(results => {
+        console.log('From /add-starred-user/:id, RESULTS', results[0].rows);
+        // res.json({
+        //     starred_ids: results.rows.starreduser
+        // });
+    });
+});
+
+// if (req.params.id == req.session.userId) {
+//     console.log('Same');
+//     res.json({
+//         data: 'same'
+//     });
+// } else {
+//     console.log('From getOtherUserInfo ', req.params.id);
+//     db
+//         .getOtherUserInfo(req.params.id)
+//         .then(results => {
+//             console.log('From getOtherUserInfo ', results.rows);
+//             results.rows[0].url = s3Url + results.rows[0].url;
+//             res.json({ data: results.rows });
+//             // res.json({ data: results.rows[0] });
+//         })
+//         .catch(err => {
+//             console.log('Something went wrong', err);
+//             res.sendStatus(500);
+//         });
+
+// ).then(function([userInfo, friendshipStatus]) {
+//             if (userInfo.rows.length === 0) {
+//                 res.sendStatus(404);
+//             } else {
+//                 if (userInfo.rows[0].url) {
+//                     console.log(userInfo.rows[0].url);
+//                     userInfo.rows[0].url = s3Url + userInfo.rows[0].url;
+//                 }
+//             }
+//             res.json({
+//                 userInfo: userInfo.rows[0],
+//                 friendshipStatus: friendshipStatus.rows[0]
+//             });
+//         });
+//     }
+
+// app.get('*', function(req, res) {
+//     res.sendFile(__dirname + '/index.html');
+// });
 
 app.get('*', function(req, res) {
     if (!req.session.userId && req.url !== '/') {
@@ -178,6 +293,6 @@ app.get('*', function(req, res) {
     }
 });
 
-app.listen(8080, function() {
+app.listen(3000, function() {
     console.log("I'm listening to Your Final Project.");
 });
