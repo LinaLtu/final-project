@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function mapStateToProps(state) {
     return {
@@ -18,7 +19,11 @@ class UserComponentStarred extends React.Component {
                     this.props.starredUsers.map(starredUser => {
                         return (
                             <div className="user-component">
-                                <div className="user-component-img" />
+                                <Link to={`/user/${starredUser.id}`}>
+                                    <div className="user-component-img">
+                                        <img src="placeholder-img.jpg" />{' '}
+                                    </div>
+                                </Link>
                                 <div className="user-component-name">
                                     {starredUser.firstname}, {starredUser.age},{' '}
                                     {starredUser.city}

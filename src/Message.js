@@ -30,7 +30,7 @@ class Message extends React.Component {
         return (
             <div className="message">
                 <button onClick={this.replyMessage}>Reply</button>
-                {this.state.replyMessage && <SendMessage />}
+                {this.state.replyMessage && <SendMessage recipientId = {}/>}
             </div>
         );
     }

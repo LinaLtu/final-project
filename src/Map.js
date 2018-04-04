@@ -8,8 +8,11 @@ export default class Map extends React.Component {
 
     render() {
         return (
-            <div className="pick">
-                <h1>Questo e' il nostro map</h1>
+            <div className="map-main">
+                <h1>Find Your Language Exchange Partner Whenever You Are!</h1>
+                <div className="map">
+                    <img src="map.jpg" />
+                </div>
             </div>
         );
     }

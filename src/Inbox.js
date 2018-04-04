@@ -46,7 +46,7 @@ export default class Inbox extends React.Component {
         // const  { firstname, lastname, email, password } = this.state;
         //send info to Redux
         return (
-            <div className="inbox-main">
+            <div className="inbox-main" id="messages">
                 <div className="inbox-window">
                     <ul className="inbox-messages">
                         <li onClick={this.onClickInbox}>Inbox</li>

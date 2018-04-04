@@ -37,9 +37,15 @@ export default class ProfileNav extends React.Component {
         return (
             <div className="nav">
                 <ul className="nav-ul">
-                    <li>MESSAGES</li>
-                    <li onClick={this.toggleStarred}>STARRED USERS</li>
-                    <li>YOUR LE PARTNER?</li>
+                    <a href="#messages">
+                        <li>MESSAGES</li>
+                    </a>
+                    <a href="#starredUsers">
+                        <li onClick={this.toggleStarred}>STARRED USERS</li>
+                    </a>
+                    <a href="#yourTandem">
+                        <li>YOUR LE PARTNER?</li>
+                    </a>
                     <li>SEARCH</li>
                     <li>FORUM</li>
                     <li onClick={this.logOut}>LOG OUT</li>

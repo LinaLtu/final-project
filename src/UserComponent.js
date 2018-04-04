@@ -14,29 +14,18 @@ class UserCompunent extends React.Component {
     render() {
         return (
             <div>
-                {this.props.starredUsers &&
-                    this.props.starredUsers.map(starredUser => {
-                        return (
-                            <div className="user-component">
-                                <div className="user-component-img">
-                                    <img src="./placeholder-img.jpg" />
-                                </div>
-                                <div className="user-component-name">
-                                    {starredUser.firstname}
-                                </div>
-                                <div className="user-component-languages">
-                                    <span>
-                                        Offering: Italian, English, Portugese
-                                    </span>
-                                    <br />
-                                    <span>
-                                        Looking for: German, Spanish, Dutch
-                                    </span>
-                                    <br />
-                                </div>
-                            </div>
-                        );
-                    })}
+                <div className="user-component">
+                    <div className="user-component-img">
+                        <img src="./placeholder-img.jpg" />
+                    </div>
+                    <div className="user-component-name">Name: Levante</div>
+                    <div className="user-component-languages">
+                        <span>Offering: Italian, English, Portugese</span>
+                        <br />
+                        <span>Looking for: German, Spanish, Dutch</span>
+                        <br />
+                    </div>
+                </div>
             </div>
         );
     }

@@ -42,7 +42,7 @@ class StarredUsers extends React.Component {
         console.log('From app ', this.props.starredUsers.length);
 
         return (
-            <div className="starred-users">
+            <div className="starred-users" id="starredUsers">
                 <h1>Starred Users</h1>
 
                 <UserComponentStarred />

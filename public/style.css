@@ -271,7 +271,7 @@ p {
 
 .pick {
     height: auto;
-    background: rgb(206, 206, 206);
+    background: rgb(255, 245, 238);
 }
 
 .pick-city {
@@ -326,7 +326,7 @@ p {
 }
 
 .your-profile-main h1 {
-    color: rgb(229, 229, 229);
+    color: white;
 }
 
 .your-profile-content,
@@ -674,6 +674,26 @@ tr {
     padding-left: 10%;
     font-weight: bold;
     text-align: left;
+}
+
+.map h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.map {
+    margin: 5%;
+}
+
+.map img {
+    width: 60%;
+    height: auto;
+}
+
+.map-main {
+    text-align: center;
+    margin: 0 auto;
+    background: rgb(255, 245, 238);
 }
 
 @media only screen and (max-width: 700px) {

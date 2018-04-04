@@ -97,7 +97,7 @@ class OtherProfile extends React.Component {
                                 onClick={this.toggleUploader}
                                 src={
                                     this.props.users[0].url ||
-                                    '/placeholder-img.jpg'
+                                    'placeholder-img.jpg'
                                 }
                             />
                         </div>
