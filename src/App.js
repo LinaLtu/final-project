@@ -54,7 +54,7 @@ class App extends React.Component {
                     <Route exact path="/profile" component={Profile} />
                     <Route
                         exact
-                        path="/user/:id"
+                        path={'/user/:id'}
                         component={OtherUserProfile}
                     />
                 </div>

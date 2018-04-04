@@ -26,7 +26,8 @@ class EditProfile extends React.Component {
             city: '',
             age: null,
             fact: '',
-            error: false
+            error: false,
+            messageToUser: false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -52,9 +53,14 @@ class EditProfile extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('Edit form submitted');
+        console.log('Edit form submitted', this.state);
 
-        this.props.dispatch(editProfileInfo(this.state));
+        this.props
+            .dispatch(editProfileInfo(this.state))
+            .then(this.setState({ messageToUser: true }))
+            .then(() =>
+                console.log('Profile updated', this.state.messageToUser)
+            );
 
         //
         // axios
@@ -114,12 +120,12 @@ class EditProfile extends React.Component {
                         <div>
                             <input
                                 onChange={this.handleChange}
-                                name="nativlang1"
+                                name="nativelang1"
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element smaller"
                                 style={{ width: '86%' }}
-                                value={this.state.nativlang1 || ''}
+                                value={this.state.nativelang1 || ''}
                             />{' '}
                             <span
                                 className="add-lang"
@@ -131,23 +137,23 @@ class EditProfile extends React.Component {
                         <div className="hidden">
                             <input
                                 onChange={this.handleChange}
-                                name="nativlang2"
+                                name="nativelang2"
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element"
                                 style={{ width: '86%' }}
-                                value={this.state.nativlang2 || ''}
+                                value={this.state.nativelang2 || ''}
                             />{' '}
                             <span className="add-lang">+</span>
                         </div>
                         <div className="hidden">
                             <input
                                 onChange={this.handleChange}
-                                name="nativlang3"
+                                name="nativelang3"
                                 type="text"
                                 placeholder="Language you are offering"
                                 className="form-element"
-                                value={this.state.nativlang3 || ''}
+                                value={this.state.nativelang3 || ''}
                             />
                         </div>
                         <div>
@@ -194,6 +200,11 @@ class EditProfile extends React.Component {
                             value={this.state.fact || ''}
                         />
                         <br />
+                        {this.state.messageToUser && (
+                            <div className="message-sent">
+                                Your profile has been updated!
+                            </div>
+                        )}
                         <button
                             onClick={this.handleSubmit}
                             className="form-button"

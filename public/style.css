@@ -669,6 +669,13 @@ tr {
     cursor: pointer;
 }
 
+.message-sent {
+    padding-top: 10px;
+    padding-left: 10%;
+    font-weight: bold;
+    text-align: left;
+}
+
 @media only screen and (max-width: 700px) {
     .nav {
         height: 12vh;

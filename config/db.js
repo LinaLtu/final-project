@@ -191,6 +191,15 @@ function editProfile(
     });
 }
 
+function sendMessage(sender_id, recipient_id, message) {
+    const q = `INSERT INTO messages (sender_id, recipient_id, message ) VALUES ($1, $2, $3) RETURNING *`;
+    const params = [sender_id, recipient_id, message];
+    return db.query(q, params).then(results => {
+        console.log('Message inserted into DB');
+        return results;
+    });
+}
+
 // function getAll(recipient_id) {
 //     const q = `
 //     SELECT users.id, firstname, lastname, url, status
@@ -385,7 +394,7 @@ module.exports.insertImageIntoDB = insertImageIntoDB;
 module.exports.addStarredUser = addStarredUser;
 module.exports.getStarredUsers = getStarredUsers;
 module.exports.editProfile = editProfile;
-// module.exports.acceptFriendRequest = acceptFriendRequest;
+module.exports.sendMessage = sendMessage;
 // module.exports.deleteFriend = deleteFriend;
 // module.exports.cancelFriendRequest = cancelFriendRequest;
 // module.exports.getAllFriends = getAllFriends;

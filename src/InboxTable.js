@@ -1,7 +1,8 @@
 import React from 'react';
 import Message from './Message';
+import { connect } from 'react-redux';
 
-export default class InboxTable extends React.Component {
+class InboxTable extends React.Component {
     constructor() {
         super();
 
@@ -10,6 +11,10 @@ export default class InboxTable extends React.Component {
         };
 
         this.showFullMessage = this.showFullMessage.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(getMessages());
     }
 
     showFullMessage() {
@@ -25,13 +30,18 @@ export default class InboxTable extends React.Component {
                 <table>
                     <tr>
                         <td>Sender</td>
-                        <td onClick={this.showFullMessage} className="shot-message-inbox">
+                        <td
+                            onClick={this.showFullMessage}
+                            className="shot-message-inbox"
+                        >
                             Beginning of the message
                         </td>
                     </tr>
                 </table>
-                {this.state.showFullMassage && (<Message />)}
+                {this.state.showFullMassage && <Message />}
             </div>
         );
     }
 }
+
+export default connect(null)(InboxTable);

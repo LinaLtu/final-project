@@ -1,5 +1,5 @@
 import React from 'react';
-import UserComponent from './UserComponent';
+import UserComponentStarred from './UserComponentStarred';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getStarredUsers } from './actions';
@@ -45,11 +45,7 @@ class StarredUsers extends React.Component {
             <div className="starred-users">
                 <h1>Starred Users</h1>
 
-                <div className="starred-flex">
-                    <UserComponent />
-                    <UserComponent />
-                    <UserComponent />
-                </div>
+                <UserComponentStarred />
             </div>
         );
     }

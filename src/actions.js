@@ -60,3 +60,14 @@ export function getStarredUsers() {
         };
     });
 }
+
+export function sendMessage(id, message) {
+    console.log('from sendMessage in action HEEEEEREEEE', message);
+    return axios.post('/send-message/' + id, { message }).then(() => {
+        console.log('From THE ACTION ', { message });
+        return {
+            type: 'SEND_MESSAGE',
+            message: message
+        };
+    });
+}

@@ -34,7 +34,6 @@ var uploader = multer({
 });
 
 app.use(function(req, res, next) {
-    console.log('From app.use ', req.url);
     next();
 });
 
@@ -105,7 +104,6 @@ app.post('/registration', (req, res) => {
                     let id = insertRegistration.rows[0].id;
                     req.session.userId = id;
                     res.redirect('/profile');
-                    console.log('Session ID', id);
                 });
         });
     } else {
@@ -117,7 +115,6 @@ app.post('/registration', (req, res) => {
 
 app.post('/login', (req, res) => {
     if (req.body.email && req.body.password) {
-        console.log('From login', req.body);
         let hashedPass;
         db
             .getUserInfo(req.body.email)
@@ -163,7 +160,7 @@ app.post('/login', (req, res) => {
 
 app.get('/logout', function(req, res) {
     req.session = null;
-    console.log('Req.session from logout', req.session);
+
     res.json({
         success: true
     });
@@ -185,18 +182,15 @@ app.get('/get-user-info', function(req, res) {
 });
 
 app.get('/get-other-user-info/:id', function(req, res) {
-    console.log('From the other OtherUser page', req.params.id);
     if (req.params.id == req.session.userId) {
         console.log('Same');
         res.json({
             data: 'same'
         });
     } else {
-        console.log('From getOtherUserInfo ', req.params.id);
         db
             .getOtherUserInfo(req.params.id)
             .then(results => {
-                console.log('From getOtherUserInfo ', results.rows);
                 if (results.rows[0].url != null) {
                     results.rows[0].url = s3Url + results.rows[0].url;
                 }
@@ -212,12 +206,10 @@ app.get('/get-other-user-info/:id', function(req, res) {
 });
 
 app.post('/upload', uploader.single('file'), s3.upload, function(req, res) {
-    console.log('We are making it to app.post.upoad');
     if (req.file) {
         db
             .insertImageIntoDB(req.file.filename, req.session.userId)
             .then(results => {
-                console.log('Upload Successful', results);
                 res.json({
                     data: s3Url + results.url,
                     id: req.session.userId
@@ -232,9 +224,7 @@ app.post('/upload', uploader.single('file'), s3.upload, function(req, res) {
 });
 
 app.post('/add-starred-user/:id', function(req, res) {
-    db.addStarredUser(req.params.id, req.session.userId).then(results => {
-        console.log('From /add-starred-user/:id ', results.rows);
-    });
+    db.addStarredUser(req.params.id, req.session.userId).then(results => {});
 });
 
 app.get('/get-starred-users', function(req, res) {
@@ -264,6 +254,24 @@ app.put('/users-me', function(req, res) {
         .then(results => {
             res.json({
                 message: 'Profile successfully updated.'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                hasError: 1,
+                message: 'Internal error.'
+            });
+        });
+});
+
+app.post('/send-message/:id', function(req, res) {
+    console.log('From server, send message', req.body);
+    db
+        .sendMessage(req.session.userId, req.params.id, req.body.message)
+        .then(results => {
+            res.json({
+                message: 'Message sent'
             });
         })
         .catch(err => {

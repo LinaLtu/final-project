@@ -6,31 +6,30 @@ function mapStateToProps(state) {
         starredUsers: state.starredUsers
     };
 }
-class UserCompunent extends React.Component {
+class UserComponentStarred extends React.Component {
     constructor() {
         super();
     }
 
     render() {
         return (
-            <div>
+            <div className="starred-flex">
                 {this.props.starredUsers &&
                     this.props.starredUsers.map(starredUser => {
                         return (
                             <div className="user-component">
-                                <div className="user-component-img">
-                                    <img src="./placeholder-img.jpg" />
-                                </div>
+                                <div className="user-component-img" />
                                 <div className="user-component-name">
-                                    {starredUser.firstname}
+                                    {starredUser.firstname}, {starredUser.age},{' '}
+                                    {starredUser.city}
                                 </div>
                                 <div className="user-component-languages">
                                     <span>
-                                        Offering: Italian, English, Portugese
+                                        Offering: {starredUser.nativelang1}
                                     </span>
                                     <br />
                                     <span>
-                                        Looking for: German, Spanish, Dutch
+                                        Looking for: {starredUser.targetlang1}
                                     </span>
                                     <br />
                                 </div>
@@ -41,5 +40,12 @@ class UserCompunent extends React.Component {
         );
     }
 }
+// {starredUser.url && (
+//     <img src= "https://s3.amazonaws.com/bodyjamnetwork/+ {starredUser.url}"
+//          ||
+//     'placeholder-img.jpg' />
+//     }
+//
+// )}
 
-export default connect(mapStateToProps)(UserCompunent);
+export default connect(mapStateToProps)(UserComponentStarred);

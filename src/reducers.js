@@ -50,6 +50,14 @@ export default function(state = {}, action) {
         });
     }
 
+    if (action.type == 'SEND_MESSAGE') {
+        state = Object.assign({}, state, {
+            message: action.message
+        });
+
+        console.log('SEND_MESSAGE in reducers', state.message);
+    }
+
     return state;
 }
 //

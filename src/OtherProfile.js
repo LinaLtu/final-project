@@ -142,7 +142,9 @@ class OtherProfile extends React.Component {
                             </table>
                         </div>
                     </div>
-                    {this.state.sendMessage && <SendMessage />}
+                    {this.state.sendMessage && (
+                        <SendMessage otherUserId={this.props.match.params.id} />
+                    )}
                     <div className="edit-profile" />
                 </div>
             </div>
