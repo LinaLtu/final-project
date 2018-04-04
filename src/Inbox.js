@@ -17,30 +17,31 @@ export default class Inbox extends React.Component {
     }
 
     onClickInbox(e) {
-        changeColor(e);
+        // changeColor(e);
         if (this.state.showSent === true) {
             this.setState({
                 showInbox: true,
                 showSent: false
             });
-            e.target.style.backgroundColor = 'white';
-        } else {
-            e.target.style.backgroundColor = 'rgb(192, 194, 186)';
+            // e.target.style.backgroundColor = 'white';
+            // } else {
+            //     e.target.style.backgroundColor = 'rgb(192, 194, 186)';
         }
     }
 
     onClickSent(e) {
-        changeColor(e);
-        if (this.state.showInbox === true) {
-            this.setState({
-                showInbox: false,
-                showSent: true
-            });
-            e.target.style.backgroundColor = 'white';
-        } else {
-            e.target.style.backgroundColor = 'rgb(192, 194, 186)';
-        }
+        // changeColor(e);
+        // if (this.state.showInbox === true) {
+        this.setState({
+            showInbox: false,
+            showSent: true
+        });
+        // e.target.style.backgroundColor = 'white';
     }
+    // else {
+    // e.target.style.backgroundColor = 'rgb(192, 194, 186)';
+    //
+    //
 
     render() {
         // const  { firstname, lastname, email, password } = this.state;
@@ -60,10 +61,10 @@ export default class Inbox extends React.Component {
     }
 }
 
-function changeColor(e) {
-    if (e.target.style.backgroundColor != 'white') {
-        e.target.style.backgroundColor = 'white';
-    } else {
-        e.target.style.backgroundColor = 'rgb(192, 194, 186)';
-    }
-}
+// function changeColor(e) {
+//     if (e.target.style.backgroundColor != 'white') {
+//         e.target.style.backgroundColor = 'white';
+//     } else {
+//         e.target.style.backgroundColor = 'rgb(192, 194, 186)';
+//     }
+// }

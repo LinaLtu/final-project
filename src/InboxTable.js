@@ -2,6 +2,7 @@ import React from 'react';
 import SendMessage from './SendMessage';
 import { connect } from 'react-redux';
 import { getMessages } from './actions';
+import { Link } from 'react-router-dom';
 
 function mapStateToProps(state) {
     return {
@@ -45,7 +46,9 @@ class InboxTable extends React.Component {
             this.props.messages.map(message => {
                 return (
                     <tr>
-                        <td>{message.firstname}</td>
+                        <Link to={`/user/${message.sender_id}`}>
+                            <td>{message.firstname}</td>
+                        </Link>
                         <td
                             onClick={() => {
                                 this.showFullMessage(message);
@@ -65,17 +68,21 @@ class InboxTable extends React.Component {
             return null;
         }
 
-        console.log('From RENDER ', this.props.messages[0].message);
+        // console.log('From RENDER ', this.props.messages[0].message);
         return (
             <div className="inbox-element">
                 <h1>Inbox</h1>
-                <table>{this.renderChatMessages()}</table>
+                <table className="inbox-table">
+                    {this.renderChatMessages()}
+                </table>
 
                 {this.state.showFullMassage && (
-                    <SendMessage
-                        recipientId={this.state.recipient_id}
-                        senderId={this.state.sender_id}
-                    />
+                    <div className="reply-message-field">
+                        <SendMessage
+                            recipientId={this.state.recipient_id}
+                            senderId={this.state.sender_id}
+                        />
+                    </div>
                 )}
             </div>
         );

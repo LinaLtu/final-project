@@ -103,7 +103,8 @@ body {
     font-size: 40px;
 }
 
-.join {
+.join,
+.inbox-main {
     height: auto;
     background-image: url('join-img.jpg');
     background-repeat: no-repeat;
@@ -558,6 +559,10 @@ tr {
 
 /* MESSAGE AREA */
 
+.inbox-main {
+    padding: 10%;
+}
+
 .message-area {
     width: 60%;
     height: 300px;
@@ -608,6 +613,7 @@ tr {
 
 .nav-ul li:hover {
     cursor: pointer;
+
 }
 
 /* INBOX */
@@ -615,46 +621,91 @@ tr {
 .inbox-window {
     width: 70%;
     height: 500px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
+    background-color: rgb(185, 167, 153, 0.9);
     margin: 0 auto;
     position: relative;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    -webkit-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    -moz-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    color: black;
+    font-size: 20px;
 }
+
+/* .inbox-window h1 {
+    font-family: 'Pinyon Script', cursive;
+} */
+
+.shot-message-inbox {
+    text-align: left;
+}
+
 
 .inbox-messages li {
     list-style-type: none;
     display: inline-block;
     /* float: left; */
     padding: 20px 50px;
-    width: 30%;
+    width: 20%;
     font-size: 25px;
-    border: 1px solid black;
     text-align: center;
     margin: 0 auto;
+    border-radius: 20px;
+}
+
+
+.inbox-main {
 }
 
 .inbox-element-container {
     width: 90%;
     height: auto;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 .inbox-messages li:hover {
-    background: white;
+    /* background: white; */
     cursor: pointer;
+    color: rgb(255, 245, 238);
+    transition: background-color 1s;
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+
+}
+
+.inbox-messages {
+    /* font-size: 30px; */
+    font-family: 'Pinyon Script', cursive;
 }
 
 .inbox-element {
-    width: 60%;
+    width: 80%;
     height: 300px;
     border: 1px solid balck;
     text-align: center;
     margin: 0 auto;
-    background: white;
+    margin-top: 0px;
+    background: rgb(255, 245, 238, 0.7);
     padding: 0;
-    position: absolute;
+    -webkit-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    -moz-box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+    box-shadow: 7px 10px 9px -5px rgba(71, 68, 71, 0.68);
+}
+    /* position: absolute;
     top: 90px;
-    left: 20%;
+    left: 10%; */
+}
+
+.inbox-table {
+    text-align: left;
+}
+
+.inbox-table td {
+    padding: 10px;
+    padding-right: 15px;
 }
 
 .message {
@@ -694,6 +745,21 @@ tr {
     text-align: center;
     margin: 0 auto;
     background: rgb(255, 245, 238);
+}
+
+.inbox-table a:link {
+    text-decoration: none;
+}
+
+.inbox-table a:visited {
+    color: black;
+}
+
+.reply-message-field {
+    width: 100%;
+    position: absolute;
+    top: 400px;
+    left: 50px;
 }
 
 @media only screen and (max-width: 700px) {
