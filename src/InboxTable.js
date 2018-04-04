@@ -1,6 +1,13 @@
 import React from 'react';
 import Message from './Message';
 import { connect } from 'react-redux';
+import { getMessages } from './actions';
+
+function mapStateToProps(state) {
+    return {
+        messages: state.messages
+    };
+}
 
 class InboxTable extends React.Component {
     constructor() {
@@ -24,19 +31,29 @@ class InboxTable extends React.Component {
     }
 
     render() {
+        if (!this.props.messages) {
+            return null;
+        }
+
+        console.log('From RENDER ', this.props.messages[0].message);
         return (
             <div className="inbox-element">
                 <h1>Inbox</h1>
                 <table>
-                    <tr>
-                        <td>Sender</td>
-                        <td
-                            onClick={this.showFullMessage}
-                            className="shot-message-inbox"
-                        >
-                            Beginning of the message
-                        </td>
-                    </tr>
+                    {this.props.messages &&
+                        this.props.messages.map(message => {
+                            return (
+                                <tr>
+                                    <td>{message.firstname}</td>
+                                    <td
+                                        onClick={this.showFullMessage}
+                                        className="shot-message-inbox"
+                                    >
+                                        {message.message}
+                                    </td>
+                                </tr>
+                            );
+                        })}
                 </table>
                 {this.state.showFullMassage && <Message />}
             </div>
@@ -44,4 +61,4 @@ class InboxTable extends React.Component {
     }
 }
 
-export default connect(null)(InboxTable);
+export default connect(mapStateToProps)(InboxTable);

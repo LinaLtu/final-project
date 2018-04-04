@@ -283,6 +283,22 @@ app.post('/send-message/:id', function(req, res) {
         });
 });
 
+app.get('/get-messages', function(req, res) {
+    console.log("we're getting messages from the server");
+    db.getMessages(req.session.userId).then(messages => {
+        console.log(`messages from the SERVER ${messages}`);
+        //
+        // let messages = [];
+        // results.forEach(response => {
+        //     messages.push(response.rows[0]);
+        // });
+
+        res.json({
+            messages
+        });
+    });
+});
+
 // if (req.params.id == req.session.userId) {
 //     console.log('Same');
 //     res.json({

@@ -54,8 +54,14 @@ export default function(state = {}, action) {
         state = Object.assign({}, state, {
             message: action.message
         });
+    }
 
-        console.log('SEND_MESSAGE in reducers', state.message);
+    if (action.type == 'GET_MESSAGES') {
+        state = Object.assign({}, state, {
+            messages: action.messages
+        });
+
+        console.log('from GET_MESSAGES ', state.messages);
     }
 
     return state;

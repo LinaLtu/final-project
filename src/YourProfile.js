@@ -45,22 +45,22 @@ class YourProfile extends React.Component {
             editProfile: false
         };
 
-        this.toggleStar = this.toggleStar.bind(this);
+        // this.toggleStar = this.toggleStar.bind(this);
         this.toggleUploader = this.toggleUploader.bind(this);
         this.toggleEditForm = this.toggleEditForm.bind(this);
     }
 
-    toggleStar() {
-        if (this.state.starImg == './star-white.jpg') {
-            this.setState({
-                starImg: './star-yellow.jpg'
-            });
-        } else {
-            this.setState({
-                starImg: './star-white.jpg'
-            });
-        }
-    }
+    // toggleStar() {
+    //     if (this.state.starImg == './star-white.jpg') {
+    //         this.setState({
+    //             starImg: './star-yellow.jpg'
+    //         });
+    //     } else {
+    //         this.setState({
+    //             starImg: './star-white.jpg'
+    //         });
+    //     }
+    // }
     toggleUploader() {
         this.setState({ showUploader: !this.state.showUploader });
     }
@@ -101,12 +101,6 @@ class YourProfile extends React.Component {
                 </h1>
                 <div className="your-profile-content">
                     <div className="profile-item-header">
-                        <span className="star-img">
-                            <img
-                                onClick={this.toggleStar}
-                                src={this.state.starImg}
-                            />
-                        </span>
                         <span>
                             <button
                                 className="join-button edit-button"

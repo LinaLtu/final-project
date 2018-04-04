@@ -200,6 +200,15 @@ function sendMessage(sender_id, recipient_id, message) {
     });
 }
 
+function getMessages(id) {
+    const q = `SELECT messages.sender_id, messages.recipient_id, messages.message, users.firstname FROM messages JOIN users ON messages.sender_id = users.id WHERE messages.recipient_id = $1`;
+    const param = [id];
+    return db.query(q, param).then(results => {
+        console.log('Results from the query ', results);
+        return results.rows;
+    });
+}
+
 // function getAll(recipient_id) {
 //     const q = `
 //     SELECT users.id, firstname, lastname, url, status
@@ -395,7 +404,7 @@ module.exports.addStarredUser = addStarredUser;
 module.exports.getStarredUsers = getStarredUsers;
 module.exports.editProfile = editProfile;
 module.exports.sendMessage = sendMessage;
-// module.exports.deleteFriend = deleteFriend;
+module.exports.getMessages = getMessages;
 // module.exports.cancelFriendRequest = cancelFriendRequest;
 // module.exports.getAllFriends = getAllFriends;
 // module.exports.rejectFriendRequest = rejectFriendRequest;

@@ -71,3 +71,13 @@ export function sendMessage(id, message) {
         };
     });
 }
+
+export function getMessages() {
+    return axios.get('/get-messages').then(function({ data }) {
+        console.log('From ACTION GET MESSAGES ', data);
+        return {
+            type: 'GET_MESSAGES',
+            messages: data.messages
+        };
+    });
+}
