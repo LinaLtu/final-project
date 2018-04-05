@@ -1,7 +1,9 @@
 var spicedPg = require('spiced-pg');
 const bcrypt = require('bcryptjs');
 
-var { dbUser, dbPass } = require('../secrets.json');
+if (!process.env.DATABASE_URL) {
+    var { dbUser, dbPass } = require('../secrets.json');
+}
 
 var db = spicedPg(
     process.env.DATABASE_URL ||
