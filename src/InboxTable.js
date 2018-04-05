@@ -4,6 +4,7 @@ import ReplyMessage from './ReplyMessage';
 import { connect } from 'react-redux';
 import { getMessages } from './actions';
 import { Link } from 'react-router-dom';
+import { deleteMessage } from './actions';
 
 function mapStateToProps(state) {
     return {
@@ -17,11 +18,14 @@ class InboxTable extends React.Component {
 
         this.state = {
             showFullMassage: false,
-            created_at: ''
+            created_at: '',
+            areMessages: true
         };
 
         this.showFullMessage = this.showFullMessage.bind(this);
         this.renderChatMessages = this.renderChatMessages.bind(this);
+        this.deleteMessage = this.deleteMessage.bind(this);
+        var messageid = '';
     }
 
     componentDidMount() {
@@ -38,6 +42,11 @@ class InboxTable extends React.Component {
                 this.setState({ showFullMassage: !this.state.showFullMassage });
             }
         );
+    }
+
+    deleteMessage() {
+        console.log('Delete Message has been clicked ', this.messageid);
+        // this.props.dispatch(removeMessage());
     }
 
     renderChatMessages() {
@@ -62,7 +71,12 @@ class InboxTable extends React.Component {
                         >
                             {message.message}
                         </td>
-                        <div className="delete-icon">
+                        <div
+                            className="delete-icon"
+                            onClick={() => {
+                                this.props.dispatch(deleteMessage(message.id));
+                            }}
+                        >
                             <img src="./delete-icon.jpg" />
                         </div>
                         <td />
@@ -74,6 +88,9 @@ class InboxTable extends React.Component {
 
     render() {
         if (!this.props.messages) {
+            // this.setState({
+            //     areMessages: false
+            // });
             return null;
         }
 
@@ -85,7 +102,6 @@ class InboxTable extends React.Component {
                 <table className="inbox-table">
                     {this.renderChatMessages()}
                 </table>
-
                 {this.state.showFullMassage && (
                     <div className="reply-message-field">
                         <ReplyMessage otherUserId={this.state.sender_id} />

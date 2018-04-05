@@ -298,6 +298,23 @@ app.post('/send-message/:id', function(req, res) {
         });
 });
 
+app.post('/delete-message/:messageId', function(req, res) {
+    db
+        .deleteMessage(req.params.messageId)
+        .then(results => {
+            res.json({
+                message: 'Message deleted'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                hasError: 1,
+                message: 'Internal error.'
+            });
+        });
+});
+
 app.get('/get-messages', function(req, res) {
     db.getMessages(req.session.userId).then(messages => {
         //

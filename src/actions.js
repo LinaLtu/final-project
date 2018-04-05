@@ -87,3 +87,13 @@ export function getSelectedUsers(targetlang) {
             };
         });
 }
+
+export function deleteMessage(messageId) {
+    console.log('From actions Remove messages', messageId);
+    return axios.post('/delete-message/' + messageId).then(function({ data }) {
+        return {
+            type: 'DELETE_MESSAGE',
+            users: data
+        };
+    });
+}
