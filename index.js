@@ -331,6 +331,21 @@ app.get('/get-messages', function(req, res) {
     });
 });
 
+app.get('/get-sent-messages', function(req, res) {
+    db.getSentMessages(req.session.userId).then(messages => {
+        //
+        // let messages = [];
+        // results.forEach(response => {
+        //     messages.push(response.rows[0]);
+        // });
+        console.log('From sent messages, server ', messages);
+
+        res.json({
+            messages
+        });
+    });
+});
+
 // if (req.params.id == req.session.userId) {
 //     console.log('Same');
 //     res.json({

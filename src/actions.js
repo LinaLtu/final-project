@@ -76,6 +76,15 @@ export function getMessages() {
     });
 }
 
+export function getSentMessages() {
+    return axios.get('/get-sent-messages').then(function({ data }) {
+        return {
+            type: 'GET_SENT_MESSAGES',
+            sentMessages: data.messages
+        };
+    });
+}
+
 export function getSelectedUsers(targetlang) {
     console.log('HEEEEELLLLOO from getSelectedUsers in actions', targetlang);
     return axios

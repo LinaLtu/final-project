@@ -64,6 +64,15 @@ export default function(state = {}, action) {
         console.log('from GET_MESSAGES ', state.messages);
     }
 
+    if (action.type == 'GET_SENT_MESSAGES') {
+        console.log('about to change the STEATEEA', action);
+        state = Object.assign({}, state, {
+            sentMessages: action.sentMessages
+        });
+
+        console.log('from GET_SENT_MESSAGES ', state.sentMessages);
+    }
+
     if (action.type == 'GET_SELECTED_USERS') {
         state = Object.assign({}, state, {
             selectedUsers: action.selectedUsers

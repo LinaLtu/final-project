@@ -203,7 +203,25 @@ function sendMessage(sender_id, recipient_id, message) {
 }
 
 function getMessages(id) {
-    const q = `SELECT messages.sender_id, messages.recipient_id, messages.message, messages.sender_id, messages.id, messages.created_at, users.firstname FROM messages JOIN users ON messages.sender_id = users.id WHERE messages.recipient_id = $1`;
+    const q = `
+        SELECT messages.sender_id, messages.recipient_id, messages.message, messages.sender_id, messages.id, messages.created_at, users.firstname
+        FROM messages
+        JOIN users
+        ON messages.sender_id = users.id
+        WHERE messages.recipient_id = $1`;
+    const param = [id];
+    return db.query(q, param).then(results => {
+        return results.rows;
+    });
+}
+
+function getSentMessages(id) {
+    const q = `
+        SELECT messages.sender_id, messages.recipient_id, messages.message, messages.sender_id, messages.id, messages.created_at, users.firstname
+        FROM messages
+        JOIN users
+        ON messages.sender_id = users.id
+        WHERE messages.sender_id = $1`;
     const param = [id];
     return db.query(q, param).then(results => {
         return results.rows;
@@ -254,6 +272,6 @@ module.exports.sendMessage = sendMessage;
 module.exports.getMessages = getMessages;
 module.exports.getSelectedUsers = getSelectedUsers;
 module.exports.deleteMessage = deleteMessage;
-// module.exports.rejectFriendRequest = rejectFriendRequest;
+module.exports.getSentMessages = getSentMessages;
 // module.exports.getUsersByIds = getUsersByIds;
 // module.exports.getUserWhoJoined = getUserWhoJoined;
