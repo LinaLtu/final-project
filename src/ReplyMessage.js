@@ -1,15 +1,69 @@
 import React from 'react';
+import { HashRouter, Route } from 'react-router-dom';
+import { sendMessage } from './actions';
+import { connect } from 'react-redux';
 
-export default class ReplyMessage extends React.Component {
-    constructor() {
-        super();
+// function mapStateToProps(state) {
+//     return {
+//         users: state.users
+//     };
+// }
+
+class ReplyMessage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            message: '',
+            messageToUser: false
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        console.log('From SendMessage, props ', this.props);
+    }
+
+    onKeyDown(e) {
+        console.log(e.target.value);
+    }
+
+    handleSubmit(e) {
+        console.log('Props.match from SendMessage', this.state.message);
+        this.props
+            .dispatch(sendMessage(this.props.otherUserId, this.state.message))
+            .then(this.setState({ messageToUser: true }))
+            .then(() => console.log('Message sent', this.state.messageToUser));
+    }
+
+    handleChange(e) {
+        this.setState({ message: e.target.value });
     }
 
     render() {
         return (
-            <div className="reply-message">
-                <p>You can reply here</p>
+            <div className="message-area">
+                <h1 className="h1-message">Send a message</h1>
+                <textarea
+                    className="message-text-area"
+                    onKeyDown={this.onKeyDown}
+                    onChange={this.handleChange}
+                />{' '}
+                <br />
+                <button
+                    onClick={this.handleSubmit}
+                    className="message-send-button"
+                >
+                    Send
+                </button>
+                {this.state.messageToUser && (
+                    <div className="message-sent">Message has been sent!</div>
+                )}
             </div>
         );
     }
 }
+
+export default connect(null)(ReplyMessage);

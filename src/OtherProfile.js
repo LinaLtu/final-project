@@ -93,13 +93,12 @@ class OtherProfile extends React.Component {
                     <div style={{ clear: 'both' }} />
                     <div className="profile-item-flex">
                         <div className="other-user-profile-pic">
-                            <img
-                                onClick={this.toggleUploader}
-                                src={
-                                    this.props.users[0].url ||
-                                    'placeholder-img.jpg'
-                                }
-                            />
+                            {this.props.users[0].url && (
+                                <img src={this.props.users[0].url} />
+                            )}
+                            {!this.props.users[0].url && (
+                                <img src="placeholder-img.jpg" />
+                            )}
                         </div>
                         <div className="profile-info">
                             <table className="profile-table">

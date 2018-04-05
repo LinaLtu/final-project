@@ -21,7 +21,16 @@ class UserComponentStarred extends React.Component {
                             <div className="user-component">
                                 <Link to={`/user/${starredUser.id}`}>
                                     <div className="user-component-img">
-                                        <img src="placeholder-img.jpg" />{' '}
+                                        {starredUser.url && (
+                                            <img
+                                                src={`https://s3.amazonaws.com/bodyjamnetwork/${
+                                                    starredUser.url
+                                                }`}
+                                            />
+                                        )};
+                                        {!starredUser.url && (
+                                            <img src="placeholder-img.jpg" />
+                                        )}; )}
                                     </div>
                                 </Link>
                                 <div className="user-component-name">
@@ -45,12 +54,5 @@ class UserComponentStarred extends React.Component {
         );
     }
 }
-// {starredUser.url && (
-//     <img src= "https://s3.amazonaws.com/bodyjamnetwork/+ {starredUser.url}"
-//          ||
-//     'placeholder-img.jpg' />
-//     }
-//
-// )}
 
 export default connect(mapStateToProps)(UserComponentStarred);

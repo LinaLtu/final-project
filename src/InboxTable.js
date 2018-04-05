@@ -1,5 +1,6 @@
 import React from 'react';
 import SendMessage from './SendMessage';
+import ReplyMessage from './ReplyMessage';
 import { connect } from 'react-redux';
 import { getMessages } from './actions';
 import { Link } from 'react-router-dom';
@@ -27,11 +28,15 @@ class InboxTable extends React.Component {
     }
 
     showFullMessage(message) {
-        this.setState({
-            showFullMassage: !this.state.showFullMassage,
-            recipientId: message.recipient_id,
-            senderId: message.sender_id
-        });
+        console.log('THE FUNCTION RAN', message);
+        this.setState(
+            {
+                sender_id: message.sender_id
+            },
+            function() {
+                this.setState({ showFullMassage: !this.state.showFullMassage });
+            }
+        );
     }
 
     renderChatMessages() {
@@ -68,6 +73,12 @@ class InboxTable extends React.Component {
             return null;
         }
 
+        console.log(
+            'inside INBOX REPLY WINDOW, Recipient ID: ',
+            this.state.recipient_id,
+            ' , senderID: ',
+            this.state.sender_id
+        );
         // console.log('From RENDER ', this.props.messages[0].message);
         return (
             <div className="inbox-element">
@@ -78,10 +89,7 @@ class InboxTable extends React.Component {
 
                 {this.state.showFullMassage && (
                     <div className="reply-message-field">
-                        <SendMessage
-                            recipientId={this.state.recipient_id}
-                            senderId={this.state.sender_id}
-                        />
+                        <ReplyMessage otherUserId={this.state.sender_id} />
                     </div>
                 )}
             </div>

@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 // }
 
 class SendMessage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             message: '',
@@ -20,6 +20,10 @@ class SendMessage extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        console.log('From SendMessage, props ', this.props);
     }
 
     onKeyDown(e) {
