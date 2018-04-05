@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function mapStateToProps(state) {
     return {
-        starredUsers: state.starredUsers
+        selectedUsers: state.selectedUsers
     };
 }
 class UserCompunent extends React.Component {
@@ -13,19 +14,42 @@ class UserCompunent extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="user-component">
-                    <div className="user-component-img">
-                        <img src="./placeholder-img.jpg" />
-                    </div>
-                    <div className="user-component-name">Name: Levante</div>
-                    <div className="user-component-languages">
-                        <span>Offering: Italian, English, Portugese</span>
-                        <br />
-                        <span>Looking for: German, Spanish, Dutch</span>
-                        <br />
-                    </div>
-                </div>
+            <div className="selected-flex">
+                {this.props.selectedUsers &&
+                    this.props.selectedUsers.map(selectedUser => {
+                        return (
+                            <div className="user-component">
+                                <Link to={`/user/${selectedUser.id}`}>
+                                    <div className="user-component-img">
+                                        {selectedUser.url && (
+                                            <img
+                                                src={`https://s3.amazonaws.com/bodyjamnetwork/${
+                                                    selectedUser.url
+                                                }`}
+                                            />
+                                        )};
+                                        {!selectedUser.url && (
+                                            <img src="placeholder-img.jpg" />
+                                        )}; )}
+                                    </div>
+                                </Link>
+                                <div className="user-component-name">
+                                    {selectedUser.firstname}, {selectedUser.age},{' '}
+                                    {selectedUser.city}
+                                </div>
+                                <div className="user-component-languages">
+                                    <span>
+                                        Offering: {selectedUser.nativelang1}
+                                    </span>
+                                    <br />
+                                    <span>
+                                        Looking for: {selectedUser.targetlang1}
+                                    </span>
+                                    <br />
+                                </div>
+                            </div>
+                        );
+                    })}
             </div>
         );
     }

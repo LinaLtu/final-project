@@ -247,20 +247,22 @@ app.get('/get-starred-users', function(req, res) {
 });
 
 app.get('/get-selected-users/:targetlang', function(req, res) {
-    console.log('Ciao from the server, selected users');
+    // console.log('Ciao from the server, selected users', req.params.targetlang);
     db.getSelectedUsers(req.params.targetlang).then(results => {
-        console.log(`from get selected users by language ${results.length}`);
+        // console.log(`from get selected users by language ${results}`);
 
         // We have an array of RESPONSES, let's create an array of user profiles
 
-        // let users = [];
-        // results.forEach(response => {
-        //     users.push(response.rows[0]);
-        // });
-        //
-        // res.json({
-        //     data: users
-        // });
+        let selectedUsers = [];
+        results.forEach(response => {
+            selectedUsers.push(response.rows[0]);
+        });
+
+        console.log('selectedUsers array ', selectedUsers);
+
+        res.json({
+            selectedUsers: selectedUsers
+        });
     });
 });
 

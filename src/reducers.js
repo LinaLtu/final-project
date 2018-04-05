@@ -64,6 +64,13 @@ export default function(state = {}, action) {
         console.log('from GET_MESSAGES ', state.messages);
     }
 
+    if (action.type == 'GET_SELECTED_USERS') {
+        state = Object.assign({}, state, {
+            selectedUsers: action.selectedUsers
+        });
+        console.log('GET_SELECTED_USERS in reducers', state);
+    }
+
     return state;
 }
 //

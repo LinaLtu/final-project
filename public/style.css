@@ -482,6 +482,14 @@ tr {
     margin: 1%;
 }
 
+.selected-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .starred-flex {
     display: flex;
     flex-wrap: wrap;

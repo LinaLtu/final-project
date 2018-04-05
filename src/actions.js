@@ -77,13 +77,13 @@ export function getMessages() {
 }
 
 export function getSelectedUsers(targetlang) {
-    console.log('Hello from getSelectedUsers in actions');
+    console.log('HEEEEELLLLOO from getSelectedUsers in actions', targetlang);
     return axios
         .get('/get-selected-users/' + targetlang)
         .then(function({ data }) {
             return {
                 type: 'GET_SELECTED_USERS',
-                users: data.data
+                selectedUsers: data.selectedUsers
             };
         });
 }

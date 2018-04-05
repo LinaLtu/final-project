@@ -20,11 +20,12 @@ class SelectedUsers extends React.Component {
 
     componentDidMount() {
         // console.log('We are shipping of target lang: ', this.props);
-        this.props.dispatch(getSelectedUsers(this.props.targetLang));
+        // this.props.dispatch(getSelectedUsers(this.props.targetLang));
     }
 
     render() {
         console.log('We are shipping of target lang, 12:15: ', this.props);
+        this.props.dispatch(getSelectedUsers(this.props.targetLang));
 
         // console.log(
         //     'From Selected users my city for the query',
