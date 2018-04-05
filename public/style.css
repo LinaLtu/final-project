@@ -775,6 +775,11 @@ tr {
     cursor: pointer;
 }
 
+.message-deleted {
+    padding: 10px;
+    color: grey;
+}
+
 @media only screen and (max-width: 700px) {
     .nav {
         height: 12vh;

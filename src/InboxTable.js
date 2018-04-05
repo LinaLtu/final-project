@@ -19,7 +19,8 @@ class InboxTable extends React.Component {
         this.state = {
             showFullMassage: false,
             created_at: '',
-            areMessages: true
+            areMessages: true,
+            messageToUser: false
         };
 
         this.showFullMessage = this.showFullMessage.bind(this);
@@ -74,7 +75,11 @@ class InboxTable extends React.Component {
                         <div
                             className="delete-icon"
                             onClick={() => {
-                                this.props.dispatch(deleteMessage(message.id));
+                                this.props.dispatch(
+                                    deleteMessage(message.id).then(
+                                        this.setState({ messageToUser: true })
+                                    )
+                                );
                             }}
                         >
                             <img src="./delete-icon.jpg" />
@@ -105,6 +110,11 @@ class InboxTable extends React.Component {
                 {this.state.showFullMassage && (
                     <div className="reply-message-field">
                         <ReplyMessage otherUserId={this.state.sender_id} />
+                    </div>
+                )}
+                {this.state.messageToUser && (
+                    <div className="message-deleted">
+                        Message has been deleted
                     </div>
                 )}
             </div>
