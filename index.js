@@ -246,9 +246,25 @@ app.get('/get-starred-users', function(req, res) {
     });
 });
 
-app.put('/users-me', function(req, res) {
-    console.log('req.body', req.body);
+app.get('/get-selected-users/:targetlang', function(req, res) {
+    console.log('Ciao from the server, selected users');
+    db.getSelectedUsers(req.params.targetlang).then(results => {
+        console.log(`from get selected users by language ${results.length}`);
 
+        // We have an array of RESPONSES, let's create an array of user profiles
+
+        // let users = [];
+        // results.forEach(response => {
+        //     users.push(response.rows[0]);
+        // });
+        //
+        // res.json({
+        //     data: users
+        // });
+    });
+});
+
+app.put('/users-me', function(req, res) {
     db
         .editProfile(req.session.userId, req.body)
         .then(results => {
@@ -266,7 +282,6 @@ app.put('/users-me', function(req, res) {
 });
 
 app.post('/send-message/:id', function(req, res) {
-    console.log('From server, send message', req.body);
     db
         .sendMessage(req.session.userId, req.params.id, req.body.message)
         .then(results => {
@@ -284,9 +299,7 @@ app.post('/send-message/:id', function(req, res) {
 });
 
 app.get('/get-messages', function(req, res) {
-    console.log("we're getting messages from the server");
     db.getMessages(req.session.userId).then(messages => {
-        console.log(`messages from the SERVER ${messages}`);
         //
         // let messages = [];
         // results.forEach(response => {

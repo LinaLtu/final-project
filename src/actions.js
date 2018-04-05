@@ -1,9 +1,7 @@
 import axios from './axios';
 
 export function getUserInfo() {
-    console.log('From Actions before axios');
     return axios.get('/get-user-info').then(function({ data }) {
-        console.log('From Actions', data);
         return {
             type: 'GET_USER_INFO',
             users: data.data
@@ -12,7 +10,6 @@ export function getUserInfo() {
 }
 
 export function getOtherUserInfo(id) {
-    console.log('We are in getOtherUserInfo in ACTION');
     return axios.get('/get-other-user-info/' + id).then(function({ data }) {
         return {
             type: 'GET_OTHER_USER_INFO',
@@ -22,7 +19,6 @@ export function getOtherUserInfo(id) {
 }
 
 export function insertUrlIntoDB(formData) {
-    console.log('We are in insertUrlIntoDB in ACTION');
     return axios.post('/upload', formData).then(function({ data }) {
         console.log('From insertUrl', data);
         return {
@@ -43,7 +39,6 @@ export function editProfileInfo(data) {
 }
 
 export function addStarredUser(id) {
-    console.log('From  addStarredUser in ACTION');
     return axios.post('/add-starred-user/' + id).then(function({ data }) {
         return {
             type: 'INSERT_INTO_STARRED',
@@ -74,10 +69,21 @@ export function sendMessage(id, message) {
 
 export function getMessages() {
     return axios.get('/get-messages').then(function({ data }) {
-        console.log('From ACTION GET MESSAGES ', data);
         return {
             type: 'GET_MESSAGES',
             messages: data.messages
         };
     });
+}
+
+export function getSelectedUsers(targetlang) {
+    console.log('Hello from getSelectedUsers in actions');
+    return axios
+        .get('/get-selected-users/' + targetlang)
+        .then(function({ data }) {
+            return {
+                type: 'GET_SELECTED_USERS',
+                users: data.data
+            };
+        });
 }

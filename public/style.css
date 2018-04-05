@@ -563,6 +563,8 @@ tr {
     padding: 10%;
 }
 
+
+
 .message-area {
     width: 60%;
     height: 300px;
@@ -619,10 +621,11 @@ tr {
 /* INBOX */
 
 .inbox-window {
-    width: 70%;
-    height: 500px;
+    width: 90%;
+    height: auto;
     /* border: 1px solid black; */
     text-align: center;
+    padding-bottom: 4%;
     background-color: rgb(185, 167, 153, 0.9);
     margin: 0 auto;
     position: relative;
@@ -683,7 +686,7 @@ tr {
 
 .inbox-element {
     width: 80%;
-    height: 300px;
+    height: auto;
     border: 1px solid balck;
     text-align: center;
     margin: 0 auto;
@@ -701,6 +704,7 @@ tr {
 
 .inbox-table {
     text-align: left;
+    height: auto;
 }
 
 .inbox-table td {
@@ -758,8 +762,17 @@ tr {
 .reply-message-field {
     width: 100%;
     position: absolute;
-    top: 400px;
+    top: 150px;
     left: 50px;
+}
+
+.delete-icon img {
+    width: 15px;
+    height: 15px;
+}
+
+.delete-icon:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 700px) {

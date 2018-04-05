@@ -201,11 +201,35 @@ function sendMessage(sender_id, recipient_id, message) {
 }
 
 function getMessages(id) {
-    const q = `SELECT messages.sender_id, messages.recipient_id, messages.message, users.firstname FROM messages JOIN users ON messages.sender_id = users.id WHERE messages.recipient_id = $1`;
+    const q = `SELECT messages.sender_id, messages.recipient_id, messages.message, messages.sender_id, messages.created_at, users.firstname FROM messages JOIN users ON messages.sender_id = users.id WHERE messages.recipient_id = $1`;
     const param = [id];
     return db.query(q, param).then(results => {
-        console.log('Results from the query ', results);
         return results.rows;
+    });
+}
+
+function getSelectedUsers(targetlang) {
+    const q = `SELECT * FROM users WHERE nativelang1 = $1`;
+    const param = [targetlang];
+    return db.query(q, param).then(results => {
+        console.log('OKAY from DB getSelectedUsers');
+        // results.rows contains an ARRAY of records
+        // We need the full user info for each for them
+        // Let's create an array of Promises
+
+        // var promises = [];
+        //
+        // console.log(`found ${results.rows.length} starred users`);
+        //
+        // results.rows.forEach(row => {
+        //     promises.push(getUserInfoById(row.starreduser));
+        // });
+        //
+        // // Promise.all returns ALWAYS an ARRAY of responses
+        // return Promise.all(promises).then(results => {
+        //     console.log(`number of STARRED user infos: ${results.length}`);
+        //     return results;
+        // });
     });
 }
 
@@ -405,7 +429,7 @@ module.exports.getStarredUsers = getStarredUsers;
 module.exports.editProfile = editProfile;
 module.exports.sendMessage = sendMessage;
 module.exports.getMessages = getMessages;
-// module.exports.cancelFriendRequest = cancelFriendRequest;
+module.exports.getSelectedUsers = getSelectedUsers;
 // module.exports.getAllFriends = getAllFriends;
 // module.exports.rejectFriendRequest = rejectFriendRequest;
 // module.exports.getUsersByIds = getUsersByIds;

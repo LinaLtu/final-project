@@ -6,10 +6,32 @@ import YourProfile from './YourProfile';
 import StarredUsers from './StarredUsers';
 import SelectedUsers from './SelectedUsers';
 import Inbox from './Inbox';
+import { connect } from 'react-redux';
+import { getUserInfo } from './actions';
 
-export default class Profile extends React.Component {
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
+
+class Profile extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            city: '',
+            targetlang1: ''
+        };
+    }
+
+    componentDidMount() {
+        this.props.dispatch(getUserInfo()).then(() => {
+            this.setState({
+                city: this.props.users[0].city,
+                targetlang1: this.props.users[0].targetlang1
+            });
+        });
     }
 
     render() {
@@ -18,9 +40,14 @@ export default class Profile extends React.Component {
                 <ProfileNav />
                 <YourProfile />
                 <StarredUsers />
-                <SelectedUsers />
+                <SelectedUsers
+                    myCity={this.state.city}
+                    targetLang={this.state.targetlang1}
+                />
                 <Inbox />
             </div>
         );
     }
 }
+
+export default connect(mapStateToProps)(Profile);

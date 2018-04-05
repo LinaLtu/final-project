@@ -45,7 +45,7 @@ class ReplyMessage extends React.Component {
     render() {
         return (
             <div className="message-area">
-                <h1 className="h1-message">Send a message</h1>
+                <h1 className="h1-message">Reply</h1>
                 <textarea
                     className="message-text-area"
                     onKeyDown={this.onKeyDown}

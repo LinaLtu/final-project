@@ -16,7 +16,8 @@ class InboxTable extends React.Component {
         super();
 
         this.state = {
-            showFullMassage: false
+            showFullMassage: false,
+            created_at: ''
         };
 
         this.showFullMessage = this.showFullMessage.bind(this);
@@ -28,7 +29,7 @@ class InboxTable extends React.Component {
     }
 
     showFullMessage(message) {
-        console.log('THE FUNCTION RAN', message);
+        console.log('THE FUNCTION RAN', message.created_at);
         this.setState(
             {
                 sender_id: message.sender_id
@@ -40,20 +41,19 @@ class InboxTable extends React.Component {
     }
 
     renderChatMessages() {
-        // if (this.props.messages) {
-        //     this.setState({
-        //         recipientId: this.props.messages[0].recipient_id,
-        //         senderId: this.props.messages[0].sender_id
-        //     });
-        // }
         return (
             this.props.messages &&
             this.props.messages.map(message => {
                 return (
                     <tr>
-                        <Link to={`/user/${message.sender_id}`}>
-                            <td>{message.firstname}</td>
-                        </Link>
+                        <td>
+                            <Link to={`/user/${message.sender_id}`}>
+                                {message.firstname}
+                            </Link>
+                        </td>
+                        <td style={{ fontSize: '11px' }}>
+                            {message.created_at}
+                        </td>
                         <td
                             onClick={() => {
                                 this.showFullMessage(message);
@@ -62,6 +62,10 @@ class InboxTable extends React.Component {
                         >
                             {message.message}
                         </td>
+                        <div className="delete-icon">
+                            <img src="./delete-icon.jpg" />
+                        </div>
+                        <td />
                     </tr>
                 );
             })
@@ -73,12 +77,7 @@ class InboxTable extends React.Component {
             return null;
         }
 
-        console.log(
-            'inside INBOX REPLY WINDOW, Recipient ID: ',
-            this.state.recipient_id,
-            ' , senderID: ',
-            this.state.sender_id
-        );
+        console.log('inside INBOX REPLY WINDOW', this.props.messages);
         // console.log('From RENDER ', this.props.messages[0].message);
         return (
             <div className="inbox-element">
