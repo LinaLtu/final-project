@@ -35,9 +35,7 @@ class SelectedUsers extends React.Component {
         return (
             <div className="starred-users" id="yourTandem">
                 <h1>People You Might be Interested to Meet</h1>
-                <div className="starred-flex">
-                    <UserComponent />
-                </div>
+                <UserComponent />
             </div>
         );
     }

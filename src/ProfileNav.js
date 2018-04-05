@@ -44,7 +44,7 @@ export default class ProfileNav extends React.Component {
                         <li onClick={this.toggleStarred}>STARRED USERS</li>
                     </a>
                     <a href="#yourTandem">
-                        <li>YOUR LE PARTNER?</li>
+                        <li>YOUR NEW LE PARTNER?</li>
                     </a>
                     <li>SEARCH</li>
                     <li>FORUM</li>

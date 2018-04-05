@@ -14,7 +14,7 @@ class UserCompunent extends React.Component {
 
     render() {
         return (
-            <div className="selected-flex">
+            <div className="starred-flex">
                 {this.props.selectedUsers &&
                     this.props.selectedUsers.map(selectedUser => {
                         return (

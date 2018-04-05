@@ -132,7 +132,7 @@ function addStarredUser(starred_user_id, loggedin_id) {
 }
 
 function getStarredUsers(loggedin_id) {
-    const q = `SELECT * FROM starred WHERE loggedinuser = $1`;
+    const q = `SELECT * FROM starred WHERE loggedinuser = $1 ORDER BY id DESC`;
     const param = [loggedin_id];
     return db.query(q, param).then(results => {
         // results.rows contains an ARRAY of records
