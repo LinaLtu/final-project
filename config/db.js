@@ -220,7 +220,7 @@ function getSentMessages(id) {
         SELECT messages.sender_id, messages.recipient_id, messages.message, messages.sender_id, messages.id, messages.created_at, users.firstname
         FROM messages
         JOIN users
-        ON messages.sender_id = users.id
+        ON messages.recipient_id = users.id
         WHERE messages.sender_id = $1`;
     const param = [id];
     return db.query(q, param).then(results => {

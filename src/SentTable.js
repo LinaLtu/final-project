@@ -42,6 +42,12 @@ class SentTable extends React.Component {
             this.props.sentMessages.map(sentMessage => {
                 return (
                     <tr>
+                        <td>
+                            To:{' '}
+                            <Link to={`/user/${sentMessage.recipient_id}`}>
+                                {sentMessage.firstname}
+                            </Link>
+                        </td>
                         <td style={{ fontSize: '11px' }}>
                             {sentMessage.created_at}
                         </td>
