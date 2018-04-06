@@ -61,7 +61,10 @@ export default class Pick extends React.Component {
                 </div>
                 {this.state.showSearchCity && <SearchCity />}
                 {this.state.showSearchLanguage && <SearchLanguage />}
-                <SearchResults />
+                <SearchResults
+                    showSearchCity={this.state.showSearchCity}
+                    showSearchLanguage={this.state.showSearchLanguage}
+                />
             </div>
         );
     }

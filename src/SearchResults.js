@@ -10,8 +10,10 @@ export default class SearchResults extends React.Component {
     render() {
         return (
             <div className="search-results">
-                <UserCompunentSearchByLanguage />
-                <UserComponentSearchByCity />
+                {this.props.showSearchCity && <UserComponentSearchByCity />}
+                {this.props.showSearchLanguage && (
+                    <UserCompunentSearchByLanguage />
+                )}
             </div>
         );
     }
