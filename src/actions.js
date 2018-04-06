@@ -106,3 +106,15 @@ export function deleteMessage(messageId) {
         };
     });
 }
+
+export function searchByLanguage(targetLang) {
+    console.log('From actions searchByLanguage', targetLang);
+    return axios
+        .get('/search-by-language/' + targetLang)
+        .then(function({ data }) {
+            return {
+                type: 'SEARCH_BY_LANGUAGE',
+                usersSearchByLanuage: data.usersSearchByLanuage
+            };
+        });
+}

@@ -33,12 +33,16 @@ export default class ProfileNav extends React.Component {
             });
     }
 
+    showMessages() {
+        console.log('We clicked on messages');
+    }
+
     render() {
         return (
             <div className="nav">
                 <ul className="nav-ul">
                     <a href="#messages">
-                        <li>MESSAGES</li>
+                        <li onClick={this.showMessages}>MESSAGES</li>
                     </a>
                     <a href="#starredUsers">
                         <li onClick={this.toggleStarred}>STARRED USERS</li>

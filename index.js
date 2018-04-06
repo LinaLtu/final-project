@@ -346,6 +346,22 @@ app.get('/get-sent-messages', function(req, res) {
     });
 });
 
+app.get('/search-by-language/:targetlang', function(req, res) {
+    db.searchByLanguage(req.params.targetlang).then(results => {
+        console.log('From sent messages, server ', results);
+        let usersSearchByLanuage = [];
+        results.forEach(response => {
+            usersSearchByLanuage.push(response.rows[0]);
+        });
+
+        console.log('searchByLanuage array ', usersSearchByLanuage);
+
+        res.json({
+            usersSearchByLanuage: usersSearchByLanuage
+        });
+    });
+});
+
 // if (req.params.id == req.session.userId) {
 //     console.log('Same');
 //     res.json({

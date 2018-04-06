@@ -80,6 +80,13 @@ export default function(state = {}, action) {
         console.log('GET_SELECTED_USERS in reducers', state);
     }
 
+    if (action.type == 'SEARCH_BY_LANGUAGE') {
+        state = Object.assign({}, state, {
+            usersSearchByLanuage: action.usersSearchByLanuage
+        });
+        console.log('SEARCH_BY_LANGUAGE in reducers', state);
+    }
+
     return state;
 }
 //

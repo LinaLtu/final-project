@@ -258,6 +258,29 @@ function getSelectedUsers(targetlang) {
     });
 }
 
+function searchByLanguage(targetlang) {
+    // console.log('CIAO FROM THE DATA BASE');
+    const q = `SELECT * FROM users WHERE nativelang1 = $1`;
+    const param = [targetlang];
+    return db.query(q, param).then(results => {
+        console.log('OKAY from DB searchByLanguage ', results);
+        var promises = [];
+
+        results.rows.forEach(row => {
+            promises.push(getUserInfoById(row.id));
+        });
+
+        return Promise.all(promises).then(results => {
+            console.log(
+                `number of SEARCH USERS BY LANGUAGE user infos: ${
+                    results.length
+                }`
+            );
+            return results;
+        });
+    });
+}
+
 module.exports.hashPassword = hashPassword;
 module.exports.insertRegistration = insertRegistration;
 module.exports.getUserInfo = getUserInfo;
@@ -273,5 +296,5 @@ module.exports.getMessages = getMessages;
 module.exports.getSelectedUsers = getSelectedUsers;
 module.exports.deleteMessage = deleteMessage;
 module.exports.getSentMessages = getSentMessages;
-// module.exports.getUsersByIds = getUsersByIds;
+module.exports.searchByLanguage = searchByLanguage;
 // module.exports.getUserWhoJoined = getUserWhoJoined;

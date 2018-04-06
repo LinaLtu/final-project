@@ -1,9 +1,29 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { searchByLanguage } from './actions';
 
-export default class SearchLanguage extends React.Component {
+class SearchLanguage extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            targetlang: ''
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        // this.setState({ targetlang: e.target.value });
+        console.log('Language chosen ', this.state.targetlang);
+        this.props.dispatch(searchByLanguage(this.state.targetlang));
+    }
+
+    handleChange(e) {
+        this.setState({ targetlang: e.target.value });
     }
 
     render() {
@@ -15,26 +35,30 @@ export default class SearchLanguage extends React.Component {
                     <div className="form-inputs">
                         <h1>Choose a Language</h1>
 
-                        <select name="cars" className="form-element">
-                            <option value="english" name="english">
+                        <select
+                            name="cars"
+                            className="form-element"
+                            onChange={this.handleChange}
+                        >
+                            <option value="English" name="english">
                                 English
                             </option>
-                            <option value="german" name="german">
+                            <option value="German" name="german">
                                 German
                             </option>
-                            <option value="spanish" name="spanish">
+                            <option value="Spanish" name="spanish">
                                 Spanish
                             </option>
-                            <option value="italian" name="italian">
+                            <option value="Italian" name="italian">
                                 Italian
                             </option>
-                            <option value="french" name="french">
+                            <option value="French" name="french">
                                 French
                             </option>
-                            <option value="turkish" name="turkish">
+                            <option value="Turkish" name="turkish">
                                 Turkish
                             </option>
-                            <option value="lithuanian" name="lithuanian">
+                            <option value="Lithuanian" name="lithuanian">
                                 Lithuanian
                             </option>
                         </select>
@@ -51,3 +75,5 @@ export default class SearchLanguage extends React.Component {
         );
     }
 }
+
+export default connect(null)(SearchLanguage);
