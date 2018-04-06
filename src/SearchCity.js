@@ -1,9 +1,29 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { searchByCity } from './actions';
 
-export default class SearchCity extends React.Component {
+class SearchCity extends React.Component {
     constructor() {
         super();
+
+        this.state = {
+            city: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(e) {
+        this.setState({ city: e.target.value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        // this.setState({ targetlang: e.target.value });
+        console.log('Language chosen ', this.state.city);
+        this.props.dispatch(searchByCity(this.state.city));
     }
 
     render() {
@@ -33,3 +53,5 @@ export default class SearchCity extends React.Component {
         );
     }
 }
+
+export default connect(null)(SearchCity);

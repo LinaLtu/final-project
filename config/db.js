@@ -259,7 +259,6 @@ function getSelectedUsers(targetlang) {
 }
 
 function searchByLanguage(targetlang) {
-    // console.log('CIAO FROM THE DATA BASE');
     const q = `SELECT * FROM users WHERE nativelang1 = $1`;
     const param = [targetlang];
     return db.query(q, param).then(results => {
@@ -281,6 +280,23 @@ function searchByLanguage(targetlang) {
     });
 }
 
+function searchByCity(city) {
+    const q = `SELECT * FROM users WHERE city = $1`;
+    const param = [city];
+    return db.query(q, param).then(results => {
+        console.log('OKAY from DB searchByCity ', results);
+        var promises = [];
+
+        results.rows.forEach(row => {
+            promises.push(getUserInfoById(row.id));
+        });
+
+        return Promise.all(promises).then(results => {
+            return results;
+        });
+    });
+}
+
 module.exports.hashPassword = hashPassword;
 module.exports.insertRegistration = insertRegistration;
 module.exports.getUserInfo = getUserInfo;
@@ -297,4 +313,4 @@ module.exports.getSelectedUsers = getSelectedUsers;
 module.exports.deleteMessage = deleteMessage;
 module.exports.getSentMessages = getSentMessages;
 module.exports.searchByLanguage = searchByLanguage;
-// module.exports.getUserWhoJoined = getUserWhoJoined;
+module.exports.searchByCity = searchByCity;

@@ -1,5 +1,6 @@
 import React from 'react';
 import UserCompunentSearchByLanguage from './UserComponentSearchByLanguage';
+import UserComponentSearchByCity from './UserComponentSearchByCity';
 
 export default class SearchResults extends React.Component {
     constructor() {
@@ -10,6 +11,7 @@ export default class SearchResults extends React.Component {
         return (
             <div className="search-results">
                 <UserCompunentSearchByLanguage />
+                <UserComponentSearchByCity />
             </div>
         );
     }

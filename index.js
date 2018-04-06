@@ -362,45 +362,21 @@ app.get('/search-by-language/:targetlang', function(req, res) {
     });
 });
 
-// if (req.params.id == req.session.userId) {
-//     console.log('Same');
-//     res.json({
-//         data: 'same'
-//     });
-// } else {
-//     console.log('From getOtherUserInfo ', req.params.id);
-//     db
-//         .getOtherUserInfo(req.params.id)
-//         .then(results => {
-//             console.log('From getOtherUserInfo ', results.rows);
-//             results.rows[0].url = s3Url + results.rows[0].url;
-//             res.json({ data: results.rows });
-//             // res.json({ data: results.rows[0] });
-//         })
-//         .catch(err => {
-//             console.log('Something went wrong', err);
-//             res.sendStatus(500);
-//         });
+app.get('/search-by-city/:city', function(req, res) {
+    db.searchByCity(req.params.city).then(results => {
+        console.log('From searchByCity, server ', results);
+        let usersSearchByCity = [];
+        results.forEach(response => {
+            usersSearchByCity.push(response.rows[0]);
+        });
 
-// ).then(function([userInfo, friendshipStatus]) {
-//             if (userInfo.rows.length === 0) {
-//                 res.sendStatus(404);
-//             } else {
-//                 if (userInfo.rows[0].url) {
-//                     console.log(userInfo.rows[0].url);
-//                     userInfo.rows[0].url = s3Url + userInfo.rows[0].url;
-//                 }
-//             }
-//             res.json({
-//                 userInfo: userInfo.rows[0],
-//                 friendshipStatus: friendshipStatus.rows[0]
-//             });
-//         });
-//     }
+        console.log('searchByCity array ', usersSearchByCity);
 
-// app.get('*', function(req, res) {
-//     res.sendFile(__dirname + '/index.html');
-// });
+        res.json({
+            usersSearchByCity: usersSearchByCity
+        });
+    });
+});
 
 app.get('*', function(req, res) {
     if (!req.session.userId && req.url !== '/') {

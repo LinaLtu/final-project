@@ -87,6 +87,13 @@ export default function(state = {}, action) {
         console.log('SEARCH_BY_LANGUAGE in reducers', state);
     }
 
+    if (action.type == 'SEARCH_BY_CITY') {
+        state = Object.assign({}, state, {
+            usersSearchByCity: action.usersSearchByCity
+        });
+        console.log('SEARCH_BY_CITY in reducers', state);
+    }
+
     return state;
 }
 //
