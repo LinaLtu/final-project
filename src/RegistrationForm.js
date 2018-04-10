@@ -36,7 +36,7 @@ export default class RegistrationForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        console.log('Info', this.state);
+
         axios
             .post('/registration', {
                 firstname: this.state.firstname,
@@ -58,8 +58,6 @@ export default class RegistrationForm extends React.Component {
     }
 
     render() {
-        // const  { firstname, lastname, email, password } = this.state;
-        //send info to Redux
         return (
             <div className="form">
                 <form className="registration-form">

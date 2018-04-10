@@ -50,13 +50,6 @@ app.use(express.static('public'));
 
 app.use(compression());
 
-// app.use(csurf());
-
-// app.use(function(req, res, next) {
-//     res.cookie('mytoken', req.csrfToken());
-//     next();
-// });
-
 if (process.env.NODE_ENV != 'production') {
     app.use(
         '/bundle.js',
@@ -67,14 +60,6 @@ if (process.env.NODE_ENV != 'production') {
 } else {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
-
-// app.get('/', (req, res) => {
-//     if (!req.session.userId) {
-//         res.redirect('/');
-//     } else {
-//         res.redirect('/profile');
-//     }
-// });
 
 app.post('/registration', (req, res) => {
     if (
@@ -125,7 +110,7 @@ app.post('/login', (req, res) => {
                     });
                     return;
                 }
-                console.log(hashedPassword.rows[0].password);
+
                 hashedPass = hashedPassword;
                 return true;
             })
@@ -134,10 +119,9 @@ app.post('/login', (req, res) => {
             )
             .then(isMatch => {
                 if (isMatch === true) {
-                    console.log('Password is correct');
                     let userId = hashedPass.rows[0].id;
                     req.session.userId = userId;
-                    console.log('Req.session from login', userId);
+
                     res.json({
                         success: true
                     });
@@ -196,7 +180,6 @@ app.get('/get-other-user-info/:id', function(req, res) {
                 }
 
                 res.json({ data: results.rows });
-                // res.json({ data: results.rows[0] });
             })
             .catch(err => {
                 console.log('Something went wrong', err);
@@ -229,12 +212,6 @@ app.post('/add-starred-user/:id', function(req, res) {
 
 app.get('/get-starred-users', function(req, res) {
     db.getStarredUsers(req.session.userId).then(results => {
-        console.log(
-            `index.js: number of STARRED user infos: ${results.length}`
-        );
-
-        // We have an array of RESPONSES, let's create an array of user profiles
-
         let users = [];
         results.forEach(response => {
             users.push(response.rows[0]);
@@ -247,18 +224,11 @@ app.get('/get-starred-users', function(req, res) {
 });
 
 app.get('/get-selected-users/:targetlang', function(req, res) {
-    // console.log('Ciao from the server, selected users', req.params.targetlang);
     db.getSelectedUsers(req.params.targetlang).then(results => {
-        // console.log(`from get selected users by language ${results}`);
-
-        // We have an array of RESPONSES, let's create an array of user profiles
-
         let selectedUsers = [];
         results.forEach(response => {
             selectedUsers.push(response.rows[0]);
         });
-
-        console.log('selectedUsers array ', selectedUsers);
 
         res.json({
             selectedUsers: selectedUsers
@@ -338,7 +308,6 @@ app.get('/get-sent-messages', function(req, res) {
         // results.forEach(response => {
         //     messages.push(response.rows[0]);
         // });
-        console.log('From sent messages, server ', messages);
 
         res.json({
             messages
@@ -348,13 +317,10 @@ app.get('/get-sent-messages', function(req, res) {
 
 app.get('/search-by-language/:targetlang', function(req, res) {
     db.searchByLanguage(req.params.targetlang).then(results => {
-        console.log('From sent messages, server ', results);
         let usersSearchByLanuage = [];
         results.forEach(response => {
             usersSearchByLanuage.push(response.rows[0]);
         });
-
-        console.log('searchByLanuage array ', usersSearchByLanuage);
 
         res.json({
             usersSearchByLanuage: usersSearchByLanuage
@@ -364,13 +330,10 @@ app.get('/search-by-language/:targetlang', function(req, res) {
 
 app.get('/search-by-city/:city', function(req, res) {
     db.searchByCity(req.params.city).then(results => {
-        console.log('From searchByCity, server ', results);
         let usersSearchByCity = [];
         results.forEach(response => {
             usersSearchByCity.push(response.rows[0]);
         });
-
-        console.log('searchByCity array ', usersSearchByCity);
 
         res.json({
             usersSearchByCity: usersSearchByCity
@@ -388,6 +351,6 @@ app.get('*', function(req, res) {
     }
 });
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 8080, function() {
     console.log("I'm listening to Your Final Project.");
 });

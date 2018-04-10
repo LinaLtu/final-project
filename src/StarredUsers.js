@@ -16,22 +16,7 @@ class StarredUsers extends React.Component {
     }
 
     componentDidMount() {
-        // let ciao = axios.get(`/get-all-starred-users`);
-        // let hallo = axios.get(`/get-altro`);
-        //
-        // let promises = [];
-        // promises.push(ciao);
-        // promises.push(hallo);
-        //
-        // Promise.all(promises).then(function(responses) {
-        //     responseCiao = responses[0]
-        //     responseHallo = response[1]
-        //
-        //     console.log(...)
-        // });
-
         this.props.dispatch(getStarredUsers());
-        // console.log('Starred users mounted', this.props);
     }
 
     render() {

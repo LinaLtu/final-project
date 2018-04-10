@@ -75,14 +75,9 @@ class SentTable extends React.Component {
 
     render() {
         if (!this.props.sentMessages) {
-            // this.setState({
-            //     areMessages: false
-            // });
             return null;
         }
 
-        console.log('inside INBOX REPLY WINDOW', this.props.messages);
-        // console.log('From RENDER ', this.props.messages[0].message);
         return (
             <div className="inbox-element">
                 <h1>Sent Messages</h1>

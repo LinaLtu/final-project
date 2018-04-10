@@ -10,13 +10,6 @@ function mapStateToProps(state) {
     };
 }
 
-//how do I change this?
-// changeImageUrl(url) {
-//        this.setState({
-//            url: url
-//        });
-//    }
-
 class YourProfile extends React.Component {
     constructor() {
         super();
@@ -83,16 +76,12 @@ class YourProfile extends React.Component {
         this.setState({
             greeting: this.state.greeting[index]
         });
-
-        console.log(this.state.starImg);
     }
 
     render() {
         if (!this.props.users) {
             return null;
         }
-
-        console.log('From app ', this.props);
 
         return (
             <div className="your-profile-main">

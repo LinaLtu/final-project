@@ -18,23 +18,13 @@ export default class ProfileNav extends React.Component {
         this.setState({
             showStarred: !this.state.showStarred
         });
-        console.log('Working', this.state.showStarred);
     }
 
     logOut(e) {
         e.preventDefault();
-        axios
-            .get('/logout')
-            .then(() => {
-                console.log('We made it here');
-            })
-            .then(() => {
-                location.replace('/');
-            });
-    }
-
-    showMessages() {
-        console.log('We clicked on messages');
+        axios.get('/logout').then(() => {
+            location.replace('/');
+        });
     }
 
     render() {
@@ -42,7 +32,7 @@ export default class ProfileNav extends React.Component {
             <div className="nav">
                 <ul className="nav-ul">
                     <a href="#messages">
-                        <li onClick={this.showMessages}>MESSAGES</li>
+                        <li>MESSAGES</li>
                     </a>
                     <a href="#starredUsers">
                         <li onClick={this.toggleStarred}>STARRED USERS</li>

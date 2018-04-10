@@ -31,11 +31,7 @@ class OtherProfile extends React.Component {
                 this.props.dispatch(
                     getOtherUserInfo(this.props.match.params.id)
                 )
-            )
-            .then(() => {
-                console.log('From state to props ', this.props.users);
-            });
-        //dispatch an action
+            );
     }
 
     toggleStar() {
@@ -48,8 +44,7 @@ class OtherProfile extends React.Component {
                 starImg: '/star-white.jpg'
             });
         }
-        console.log('From starred ', this.props.match.params.id);
-        // this.props.dispatch(addStarredUser(this.props.match.params.id));
+
         axios
             .post(`/add-starred-user/${this.props.match.params.id}`)
             // .then(

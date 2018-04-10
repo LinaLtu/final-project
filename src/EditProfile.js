@@ -53,31 +53,15 @@ class EditProfile extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('Edit form submitted', this.state);
-
         this.props
             .dispatch(editProfileInfo(this.state))
             .then(this.setState({ messageToUser: true }))
             .then(() =>
                 console.log('Profile updated', this.state.messageToUser)
             );
-
-        //
-        // axios
-        //     .post(`/edit-profile`)
-        //     .then(
-        //         this.props.dispatch(
-        //             getOtherUserInfo(this.props.match.params.id)
-        //         )
-        //     )
-        //     .then(() => {
-        //         console.log('From state to props ', this.props.users);
-        //     });
     }
 
     render() {
-        // const  { firstname, lastname, email, password } = this.state;
-        //send info to Redux
         return (
             <div className="form">
                 <form className="edit-profile-form">

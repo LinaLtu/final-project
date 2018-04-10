@@ -20,6 +20,4 @@ const elem = (
     </Provider>
 );
 
-
-    ReactDOM.render(elem, document.querySelector('main'));
-// ReactDOM.render(elem, document.querySelector('main'));
+ReactDOM.render(elem, document.querySelector('main'));

@@ -21,8 +21,7 @@ class SearchCity extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.setState({ targetlang: e.target.value });
-        console.log('Language chosen ', this.state.city);
+
         this.props.dispatch(searchByCity(this.state.city));
     }
 

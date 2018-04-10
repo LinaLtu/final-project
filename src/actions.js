@@ -20,7 +20,6 @@ export function getOtherUserInfo(id) {
 
 export function insertUrlIntoDB(formData) {
     return axios.post('/upload', formData).then(function({ data }) {
-        console.log('From insertUrl', data);
         return {
             type: 'INSERT_URL_INTO_DB',
             image: data.data,
@@ -57,9 +56,7 @@ export function getStarredUsers() {
 }
 
 export function sendMessage(id, message) {
-    console.log('from sendMessage in action HEEEEEREEEE', message);
     return axios.post('/send-message/' + id, { message }).then(() => {
-        console.log('From THE ACTION ', { message });
         return {
             type: 'SEND_MESSAGE',
             message: message
@@ -86,7 +83,6 @@ export function getSentMessages() {
 }
 
 export function getSelectedUsers(targetlang) {
-    console.log('HEEEEELLLLOO from getSelectedUsers in actions', targetlang);
     return axios
         .get('/get-selected-users/' + targetlang)
         .then(function({ data }) {
@@ -98,7 +94,6 @@ export function getSelectedUsers(targetlang) {
 }
 
 export function deleteMessage(messageId) {
-    console.log('From actions Remove messages', messageId);
     return axios.post('/delete-message/' + messageId).then(function({ data }) {
         return {
             type: 'DELETE_MESSAGE',

@@ -25,7 +25,6 @@ class InboxTable extends React.Component {
 
         this.showFullMessage = this.showFullMessage.bind(this);
         this.renderChatMessages = this.renderChatMessages.bind(this);
-        this.deleteMessage = this.deleteMessage.bind(this);
         var messageid = '';
     }
 
@@ -34,7 +33,6 @@ class InboxTable extends React.Component {
     }
 
     showFullMessage(message) {
-        console.log('THE FUNCTION RAN', message.created_at);
         this.setState(
             {
                 sender_id: message.sender_id
@@ -43,11 +41,6 @@ class InboxTable extends React.Component {
                 this.setState({ showFullMassage: !this.state.showFullMassage });
             }
         );
-    }
-
-    deleteMessage() {
-        console.log('Delete Message has been clicked ', this.messageid);
-        // this.props.dispatch(removeMessage());
     }
 
     renderChatMessages() {
@@ -99,8 +92,6 @@ class InboxTable extends React.Component {
             return null;
         }
 
-        console.log('inside INBOX REPLY WINDOW', this.props.messages);
-        // console.log('From RENDER ', this.props.messages[0].message);
         return (
             <div className="inbox-element">
                 <h1>Inbox</h1>

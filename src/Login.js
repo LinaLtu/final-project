@@ -23,7 +23,6 @@ export default class RegistrationForm extends React.Component {
                 password: this.state.password
             })
             .then(results => {
-                console.log('Success', results.data);
                 if (results.data.success == false) {
                     this.setState({ error: true });
                 } else {
@@ -39,8 +38,6 @@ export default class RegistrationForm extends React.Component {
     }
 
     render() {
-        // const  { firstname, lastname, email, password } = this.state;
-        //send info to Redux
         return (
             <div className="form">
                 <form className="registration-form">

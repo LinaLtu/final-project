@@ -14,25 +14,9 @@ class PicUpload extends Component {
         e.preventDefault();
         let formData = new FormData();
         formData.append('file', e.target.files[0]);
-        console.log(
-            'We are in submitUploadImage, file should be appended',
-            e.target.files[0]
-        );
+
         this.props.dispatch(insertUrlIntoDB(formData));
     }
-
-    // submitUploadImage(e) {
-    //     console.log(e.target);
-    //     e.preventDefault();
-    //     let formData = new FormData();
-    //     formData.append('file', e.target.files[0]);
-    //     // axios post request to send the data along with it
-    //     axios.post('/upload', formData).then(res => {
-    //         this.props.changeImageUrl(res.data.data);
-    //         //
-    //         console.log(this.state);
-    //     });
-    // }
 
     render() {
         return <input type="file" onChange={this.submitUploadImage} />;

@@ -17,8 +17,6 @@ class SearchLanguage extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.setState({ targetlang: e.target.value });
-        console.log('Language chosen ', this.state.targetlang);
         this.props.dispatch(searchByLanguage(this.state.targetlang));
     }
 
@@ -27,8 +25,6 @@ class SearchLanguage extends React.Component {
     }
 
     render() {
-        // const  { firstname, lastname, email, password } = this.state;
-        //send info to Redux
         return (
             <div className="form">
                 <form className="pick-city">

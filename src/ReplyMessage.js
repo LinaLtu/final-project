@@ -3,12 +3,6 @@ import { HashRouter, Route } from 'react-router-dom';
 import { sendMessage } from './actions';
 import { connect } from 'react-redux';
 
-// function mapStateToProps(state) {
-//     return {
-//         users: state.users
-//     };
-// }
-
 class ReplyMessage extends React.Component {
     constructor(props) {
         super(props);
@@ -22,20 +16,10 @@ class ReplyMessage extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
-        console.log('From SendMessage, props ', this.props);
-    }
-
-    onKeyDown(e) {
-        console.log(e.target.value);
-    }
-
     handleSubmit(e) {
-        console.log('Props.match from SendMessage', this.state.message);
         this.props
             .dispatch(sendMessage(this.props.otherUserId, this.state.message))
-            .then(this.setState({ messageToUser: true }))
-            .then(() => console.log('Message sent', this.state.messageToUser));
+            .then(this.setState({ messageToUser: true }));
     }
 
     handleChange(e) {
@@ -48,7 +32,6 @@ class ReplyMessage extends React.Component {
                 <h1 className="h1-message">Reply</h1>
                 <textarea
                     className="message-text-area"
-                    onKeyDown={this.onKeyDown}
                     onChange={this.handleChange}
                 />{' '}
                 <br />
