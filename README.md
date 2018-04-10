@@ -1,9 +1,31 @@
-# Using this repo in development
+# Rubicon – Cross the Language Barrier
 
-The `src` directory is where all of your client-side Javascript code should live. The file `src/start.js` is the entry point for your React application. All other files you use will either be imported by `start.js` or imported by files that are imported `start.js` (or imported by files that are imported by files that are imported by `start.js`, etc.).
+![TheseShoddyAlligatorgar-size_restricted](/Users/lina/Desktop/TheseShoddyAlligatorgar-size_restricted.gif)
 
-To run your app in devlopment, you need to start two servers.
+In 2018, I successfully completed a 12-week-long Full Stack JavaScript Web Development coding bootcamp at SPICED Academy, Berlin. At the end of the course, we had a week to build a project, which we presented on our graduation day. 
 
-1. `bundle-server.js` - this server will listen on port 8081 and does nothing but compile the code in `src/start.js` and its dependencies into a single bundle which it serves from the url `/bundle.js`. It uses [`webpack-dev-middleware`](https://github.com/webpack/webpack-dev-middleware) to do this. This middleware keeps all the compiled files in memory and doesn't ever write a file to disk. Every time you edit one of the files in your bundle, it detects the change and automatically recompiles. Thus, you do not have to restart this process every time you make a change to one of your client-side Javascript files. After a change is saved, the updated `/bundle.js` will be available automatically.
+*Important: the following code contains only features that were created during the final week. Major features are lacking and the project is still to be completed.*
 
-2. `index.js` - this server listens on port 8080 and it is where all your normal express stuff should go. When `index.js` is running in development, requests for `/bundle.js` will cause a request to be made to `http://localhost:8081/bundle.js` and the result served (it uses the [`http-proxy-middleware`](https://github.com/chimurai/http-proxy-middleware) to do this). You can restart this server every time you make a server-side change and not have to wait for `bundle.js` to recompile before you can test the change.
+Since one of my biggest passions, besides coding, is learning foreign languages, when the time came to pick a topic for my final project, it was a simple choice…
+
+Rubicon is a social network where people learning a foreign language can find language exchange partners.
+
+![ExcellentGrotesqueHellbender-size_restricted](/Users/lina/Desktop/ExcellentGrotesqueHellbender-size_restricted.gif)
+
+###  Users can:
+
+- register and log in (passwords are hashed and salted),
+- upload a picture and edit their profile information,
+- search language exchange partners based on their city and native language,
+- add users to “starred” (a.k.a. bookmarked) list,
+- get suggestions of people who speak their target language,
+- send private messages, view messages they have sent and received and/or delete them.
+
+### Technologies used:
+
+- ReactJS and Redux
+- Node.js and Express.js
+-  PostgreSQL Database
+- AWS S3 for Image Storage
+
+Working on this project allowed me to gain more ReactJS experience, helped me underatand data flow between the client and  the server and demonstrated the usefulness and convenience of using Redux. 
