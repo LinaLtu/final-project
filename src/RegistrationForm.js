@@ -30,10 +30,6 @@ export default class RegistrationForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    onItemClick(e) {
-        e.currentTarget.style.backgroundColor = 'pink';
-    }
-
     onSubmit(e) {
         e.preventDefault();
 
@@ -94,12 +90,7 @@ export default class RegistrationForm extends React.Component {
                                 onChange={this.onChange}
                                 style={{ width: '86%' }}
                             />{' '}
-                            <span
-                                className="add-lang"
-                                onClick={this.onItemClick}
-                            >
-                                +
-                            </span>
+                            <span className="add-lang">+</span>
                         </div>
                         <div className="hidden">
                             <input
