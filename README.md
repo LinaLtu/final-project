@@ -28,4 +28,4 @@ Rubicon is a social network where people learning a foreign language can find la
 -  PostgreSQL Database
 - AWS S3 for Image Storage
 
-Working on this project allowed me to gain more ReactJS experience, helped me underatand data flow between the client and  the server and demonstrated the usefulness and convenience of using Redux. 
+Working on this project allowed me to gain more ReactJS experience, helped me understand data flow between the client and  the server and demonstrated the usefulness and convenience of using Redux on a ReactJS project. 
