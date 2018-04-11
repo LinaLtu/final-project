@@ -1,7 +1,10 @@
 {
-    "name": "spiced-social-network",
+    "name": "rubicon",
     "version": "1.0.0",
-    "description": "",
+    "description": "Social network for finding language exchange partners",
+    "keywords": ["Social", "Languages", "Node"],
+    "author": "Lina Suodyte",
+    "license": "MIT",
     "main": "index.js",
     "scripts": {
         "build": "node build.js",
@@ -9,7 +12,7 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "engines": {
-        "node": "8.9.4"
+        "node": ">8.9.4"
     },
     "dependencies": {
         "axios": "^0.15.3",
@@ -44,8 +47,5 @@
         "uid-safe": "^2.1.4",
         "webpack": "^1.14.0",
         "webpack-dev-middleware": "^1.8.4"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC"
+    }
 }
