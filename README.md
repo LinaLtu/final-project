@@ -1,6 +1,6 @@
 # Rubicon – Cross the Language Barrier
 
-![rubicondemo](/Users/lina/Desktop/horseradish-final/rubicondemo.gif)
+![rubicondemo](https://github.com/LinaLtu/final-project/blob/master/rubicondemo.gif)
 
 In 2018, I successfully completed a 12-week-long Full Stack JavaScript Web Development coding bootcamp at SPICED Academy, Berlin. At the end of the course, we had a week to build a project, which we presented on our graduation day. 
 
@@ -10,7 +10,7 @@ Since one of my biggest passions, besides coding, is learning foreign languages,
 
 Rubicon is a social network where people learning a foreign language can find language exchange partners.
 
-![rubiconsearchdemo](/Users/lina/Desktop/horseradish-final/rubiconsearchdemo.gif)
+![rubiconsearchdemo](https://github.com/LinaLtu/final-project/blob/master/rubiconsearchdemo.gif)
 
 ###  Users can:
 
