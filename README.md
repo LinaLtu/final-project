@@ -2,9 +2,9 @@
 
 ![rubicondemo](https://github.com/LinaLtu/final-project/blob/master/rubicondemo.gif)
 
-In 2018, I successfully completed a 12-week-long Full Stack JavaScript Web Development coding bootcamp at SPICED Academy, Berlin. At the end of the course, we had a week to build a project, which we presented on our graduation day. 
+In 2018, I successfully completed a 12-week-long Full Stack JavaScript Web Development coding bootcamp at SPICED Academy, Berlin. At the end of the course, we had a week to build a final project, which we presented on our graduation day. 
 
-*Important: the following code contains only features that were created during the final week. Major features are lacking and the project is still to be completed.*
+*Important: the following code contains only features that were created during the final week. Some major features are lacking and the project is still to be completed.*
 
 Since one of my biggest passions, besides coding, is learning foreign languages, when the time came to pick a topic for my final project, it was a simple choice…
 
